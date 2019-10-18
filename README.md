@@ -1,12 +1,20 @@
 
 *******
 Tabelas de conteúdo
-1. [O que é o goHealthy?](#whatgoHealthy)
-2. [Objetivos](#statement)
-3. [Diagrama de Caso de Uso](#uscd)
-4. [Diagrama de Classes](#cd)
-5. [Diagrama de Sequência](#sd)
+1. [O Problema](#problem)
+2. [O que é o goHealthy?](#whatgoHealthy)
+3. [Objetivos](#statement)
+4. [Diagrama de Caso de Uso](#uscd)
+5. [Diagrama de Classes](#cd)
+6. [Diagrama de Sequência](#sd)
 *******
+
+<div id="problem" />
+
+> De acordo com [Yorks DM, Frothingham CA, Schuenke MD. Effects of Group Fitness Classes on Stress and Quality of Life of Medical Students. J Am Osteopath Assoc 2017](https://www.ncbi.nlm.nih.gov/pubmed/29084328):
+
+*Participar em um grupo de atividades físicas  provou-se reduzir signiﬁcantemente os níveis de stress e
+aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) comparado com  pessoas que realizam atividades regulares sozinhas.*
 
 <div id="whatgoHealthy" />
 
