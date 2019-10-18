@@ -15,7 +15,7 @@ public class AspiranteDTO implements Serializable {
     private String email;
     private String numero;
     private String conquista;
-    private Integer avaliacao;
+    private Double avaliacao;
     private Boolean status;
 
     public AspiranteDTO(){
@@ -61,11 +61,11 @@ public class AspiranteDTO implements Serializable {
         this.conquista = conquista;
     }
 
-    public Integer getAvaliacao() {
+    public Double getAvaliacao() {
         return avaliacao;
     }
 
-    public void setAvaliacao(Integer avaliacao) {
+    public void setAvaliacao(Double avaliacao) {
         this.avaliacao = avaliacao;
     }
 

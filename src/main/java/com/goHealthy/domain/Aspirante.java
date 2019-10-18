@@ -20,7 +20,7 @@ public class Aspirante implements Serializable {
     private String email;
     private String numero;
     private String conquista;
-    private Integer avaliacao;
+    private Double avaliacao;
     private Boolean status;
     private String senha;
 
@@ -68,7 +68,7 @@ public class Aspirante implements Serializable {
         this.conquista = conquista;
     }
 
-    public Integer getAvaliacao() {
+    public Double getAvaliacao() {
         return avaliacao;
     }
 
@@ -80,7 +80,7 @@ public class Aspirante implements Serializable {
         this.participandoEventos = participandoEventos;
     }
 
-    public void setAvaliacao(Integer avaliacao) {
+    public void setAvaliacao(Double avaliacao) {
         this.avaliacao = avaliacao;
     }
 
@@ -113,12 +113,13 @@ public class Aspirante implements Serializable {
         return Objects.hash(getId());
     }
 
-    public Aspirante(String nome, String email, String numero, Boolean status, String senha) {
+    public Aspirante(String nome, String email, String numero, String senha) {
         this.nome = nome;
         this.email = email;
         this.numero = numero;
-        this.status = status;
+        this.setStatus(true);
         this.senha = senha;
+        this.setAvaliacao(4.5);
     }
     public Aspirante(){
 
