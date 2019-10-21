@@ -16,7 +16,7 @@ public class  Evento implements Serializable {
 	private String lugar;
 	private String data;
 	private String hora;
-	private String categoria;
+	private Categoria categoria;
 	private Boolean status;
 
 	@ManyToMany
@@ -30,7 +30,7 @@ public class  Evento implements Serializable {
 		
 	}
 			
-	public Evento(Integer id, String nome, String lugar, String hora,String data, String categoria, Boolean status) {
+	public Evento(Integer id, String nome, String lugar, String hora,String data, Categoria categoria, Boolean status) {
 		super();
 		this.id = id;
 		this.nome = nome;
