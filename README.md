@@ -11,7 +11,9 @@
 7. [Diagrama de Classes](#cd)  
 8. [Diagrama de Sequência](#sd)  
 9. [Diagrama de Estado](#std)  
-10.[Core Team](#team)  
+10.[Tecnologias](#tec)  
+11.[Core Team](#team)  
+
 
 *******
 
@@ -145,6 +147,11 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 #### Chat
 
 ![Diagrama de estados chat](https://user-images.githubusercontent.com/54459438/67324046-97a15200-f4e9-11e9-9738-1594693a6f1b.png)
+
+<div id="tec" />
+
+### Tecnologias
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/800px-Unofficial_JavaScript_logo_2.svg.png" weigth="50" width="50"> <img src="https://user-images.githubusercontent.com/54459438/67327465-59f2f800-f4ee-11e9-8aeb-9e346223df08.png" weigth="50" width="50"> <img src="https://www.mediapreset.com/wp-content/uploads/2017/02/MediaPreset.com-Node.js-Application-Development-Service.jpg" weigth="50" width="50"><img src="https://user-images.githubusercontent.com/54459438/67327760-d1c12280-f4ee-11e9-88e8-b3fc77416ec6.png" weigth="50" width="50"><img src="https://user-images.githubusercontent.com/54459438/67327832-f3220e80-f4ee-11e9-98d7-a2d2aa75774f.jpg" weigth="50" width="50">
 
 
 <div id="team" />
