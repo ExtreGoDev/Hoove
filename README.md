@@ -2,16 +2,16 @@
 
 *******
 
-Tabelas de conteúdo
-1. [O Problema](#problem)
-2. [O que é o goHealthy?](#whatgoHealthy)
-3. [Protótipo](#prototype)
-4. [Objetivos](#statement)
-6. [Requisitos](#Requirements)
-7. [Diagrama de Caso de Uso](#uscd)
-8. [Diagrama de Classes](#cd)
-9. [Diagrama de Sequência](#sd)
-10.[Core Team](#team)
+1. [O Problema](#problem)  
+2. [O que é o goHealthy?](#whatgoHealthy)  
+3. [Protótipo](#prototype)  
+4. [Objetivos](#statement)  
+5. [Requisitos](#Requirements)  
+6. [Diagrama de Caso de Uso](#uscd)  
+7. [Diagrama de Classes](#cd)  
+8. [Diagrama de Sequência](#sd)  
+9. [Diagrama de Estado](#std)  
+10.[Core Team](#team)  
 
 *******
 
@@ -111,11 +111,41 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 ### Diagrama de Classes
 
-![Diagrama de Classe](https://user-images.githubusercontent.com/54459438/67316515-f3b2a900-f4de-11e9-9400-85a975ab3af0.jpg)
+![Diagrama_Classes](https://user-images.githubusercontent.com/54459438/67320420-9c173c00-f4e4-11e9-857f-92e1592950bd.png)
 
 <div id="sd" />
 
-### Diagrama de Sequência]
+### Diagramas de Sequência
+
+#### Buscar evento
+![Sequence1 (1)](https://user-images.githubusercontent.com/54459438/67322163-fdd8a580-f4e6-11e9-8f0d-0379a367cb13.jpg)
+
+
+#### Busar aspitante
+![Sequence3 (1)](https://user-images.githubusercontent.com/54459438/67322362-48f2b880-f4e7-11e9-88dc-690ef54979ef.jpg)
+
+
+#### criar aspirante
+![WhatsApp Image 2019-10-09 at 23 56 28](https://user-images.githubusercontent.com/54459438/67322684-c28aa680-f4e7-11e9-9b8f-6c384009a2c6.jpeg)
+
+
+
+<div id="std" />
+
+### Diagrama de Estado
+
+#### Apirante
+
+![Diagrama de estados aspirante](https://user-images.githubusercontent.com/54459438/67324121-b30c5d00-f4e9-11e9-804e-dc6b12e6d6f7.png)
+
+#### Apirante
+
+![Diagrama de estados evento](https://user-images.githubusercontent.com/54459438/67323841-61fc6900-f4e9-11e9-9ceb-d33f53898386.png)
+
+#### Chat
+
+![Diagrama de estados chat](https://user-images.githubusercontent.com/54459438/67324046-97a15200-f4e9-11e9-9738-1594693a6f1b.png)
+
 
 <div id="team" />
 
