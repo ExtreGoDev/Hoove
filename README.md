@@ -10,9 +10,9 @@
 6. [Diagrama de Caso de Uso](#uscd)  
 7. [Diagrama de Classes](#cd)  
 8. [Diagrama de Sequência](#sd)  
-9. [Diagrama de Estado](#std)  
-10.[Tecnologias](#tec)  
-11.[Core Team](#team)  
+9. [Diagrama de Estado](#std)
+10. [Tecnologias](#tec)  
+11. [Core Team](#team)  
 
 
 *******
@@ -57,9 +57,9 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 #### Requisitos funcionais
 
-- [RF001] O sistema deve prover o cadastro de usuários;
+- [RF001] O sistema deve prover o cadastro de usuários requisitando nome, email, data de nascimento, cidade e estado;
 - [RF002] O sistema deve prover o login de usuários;
-- [RF003] O sistema deve permitir que o usuário cadastre informações Fisiológicas(peso, altura, etc);
+- [RF003] O sistema deve permitir que o usuário cadastre informações Fisiológicas;
 - [RF004] O sistema deve permitir que o usuário cadastre eventos (titulo do evento,data e hora, local, público que o evento está direcionado);
 - [RF005] O sistema deve permitir que o usuário busque eventos;
 - [RF006] O sistema deve apresentar informações do evento alvo; 
@@ -113,7 +113,7 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 ### Diagrama de Classes
 
-![Diagrama_Classes](https://user-images.githubusercontent.com/54459438/67320420-9c173c00-f4e4-11e9-857f-92e1592950bd.png)
+![Diagrama de Classe](https://user-images.githubusercontent.com/44952113/67606004-7a24f000-f756-11e9-8e38-3642a50501ef.png)
 
 <div id="sd" />
 
@@ -127,7 +127,7 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 ![Sequence3 (1)](https://user-images.githubusercontent.com/54459438/67322362-48f2b880-f4e7-11e9-88dc-690ef54979ef.jpg)
 
 
-#### criar aspirante
+#### Criar aspirante
 ![WhatsApp Image 2019-10-09 at 23 56 28](https://user-images.githubusercontent.com/54459438/67322684-c28aa680-f4e7-11e9-9b8f-6c384009a2c6.jpeg)
 
 
