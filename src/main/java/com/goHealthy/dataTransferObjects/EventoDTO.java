@@ -1,6 +1,7 @@
 package com.goHealthy.dataTransferObjects;
 
 import com.goHealthy.domain.Aspirante;
+import com.goHealthy.domain.Categoria;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ public class EventoDTO {
     private String lugar;
     private String data;
     private String hora;
-    private String categoria;
+    private Categoria categoria;
     private Boolean status;
     Set<AspiranteDTO> participantesEvento;
     public EventoDTO(){
@@ -34,6 +35,7 @@ public class EventoDTO {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
 
     public Integer getId() {
         return id;
@@ -75,11 +77,11 @@ public class EventoDTO {
         this.hora = hora;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

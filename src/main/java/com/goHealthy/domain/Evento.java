@@ -61,6 +61,14 @@ public class  Evento implements Serializable {
 		return status;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
@@ -97,13 +105,6 @@ public class  Evento implements Serializable {
 		this.hora = hora;
 	}
 
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
 
 	@Override
 	public int hashCode() {
