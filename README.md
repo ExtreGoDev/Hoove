@@ -100,7 +100,6 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 - [RNF007] O sistema deve possuir uma interface gráfica moderna;
 - [RNF008] O sistema deve ser agradável;
 - [RNF009] O sistema deve descartar os eventos em 24 horas após sua finalização;
-- [RNF010] O sistema não deve descartar quaisquer dados e sim reaproveitar, isto é, transferir para BIG DATA (Cuidado com a LGPD);
 
 <div id="uscd" />
 
