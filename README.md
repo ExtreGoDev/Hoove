@@ -111,31 +111,6 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 ### Especificações de Caso de Uso
 
-**Nome de caso de uso:** [UC001] Criar Evento
-
-**Objetivo:** Possibilitar ao aspirante à criar um evento.
-
-**Pré-condições:** Aspirante precisa estar logado no sistema.
-
-**Fluxo Principal:** 
-1. O sistema requisita a categoria do evento.
-2. Aspirante seleciona a categoria do evento desejada e clica em prosseguir.
-3. O sistema requisita as informações *gerais* do evento.
-4. Aspirante fornece as informações *gerais* e clica em prosseguir.
-5. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
-6. O Aspirante seleciona a opção de prosseguir.
-7. O sistema requisita as informações *especificas* referente à categoria do evento.
-8. Aspirante fornece as informações *especificas* e clica em prosseguir.
-9. O sistema apresenta mensagem de sucesso referente a criação do evento.
-
-**Fluxo Alternativo:** 
-1. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
-2. O aspirante seleciona a opção de não criar o evento.
-3. O sistema retorna para o menu principal da aplicação.
-
-**Pós-Condições:**
-Evento criado.
-
 
 **Nome de caso de uso:** [UC001] Criar Evento
 
