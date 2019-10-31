@@ -126,13 +126,13 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 - **Fluxo Principal:** 
    1. O sistema requisita a categoria do evento.
-   2. Aspirante seleciona a categoria do evento desejada e clica em prosseguir.
+   2. Aspirante seleciona a categoria do evento desejada e acessa prosseguir.
    3. O sistema requisita as informações *gerais* do evento.
-   4. Aspirante fornece as informações *gerais* e clica em prosseguir.
+   4. Aspirante fornece as informações *gerais* e acessa prosseguir.
    5. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
    6. O Aspirante seleciona a opção de prosseguir.
    7. O sistema requisita as informações *especificas* referente à categoria do evento.
-   8. Aspirante fornece as informações *especificas* e clica em prosseguir.
+   8. Aspirante fornece as informações *especificas* e acessa prosseguir.
    9. O sistema apresenta mensagem de sucesso referente a criação do evento.
 
 - **Fluxo Alternativo:** 
@@ -152,7 +152,7 @@ Evento criado.
 - **Fluxo Principal:** 
    1. Aspirante seleciona evento.
    2. O sistema apresenta as informações do evento.
-   3. Aspirante clica em participar evento.
+   3. Aspirante acessa participar evento.
    4. O sistema pergunta se o aspirante deseja realmente participar do evento.
    5. Aspirante confirma a sua futura participação no evento.
    6. O sistema apresenta uma mensagem motivadora referente a categoria do evento em conjunto com mensagem de sucesso referente a confirmação de participação.
