@@ -8,11 +8,12 @@
 4. [Objetivos](#statement)  
 5. [Requisitos](#Requirements)  
 6. [Diagrama de Caso de Uso](#uscd)  
-7. [Diagrama de Classes](#cd)  
-8. [Diagrama de Sequência](#sd)  
-9. [Diagrama de Estado](#std)
-10. [Tecnologias](#tec)  
-11. [Core Team](#team)  
+7. [Especificações de Casos de Uso](#duscd)
+8. [Diagrama de Classes](#cd)  
+9. [Diagrama de Sequência](#sd)  
+10. [Diagrama de Estado](#std)
+11. [Tecnologias](#tec)  
+12. [Core Team](#team)  
 
 
 *******
@@ -110,6 +111,12 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 <div id="duscd" />
 
 ### Especificações de Caso de Uso
+*******
+1. [UC001](#UC001)
+2. [UC002](#UC002)
+*******
+
+<div id="UC001" />
 
 **Nome de caso de uso:** [UC001] Criar Evento
 
@@ -136,6 +143,7 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 **Pós-Condições:**
 Evento criado.
 
+<div id="UC002" />
 
 **Nome de caso de uso:** [UC002] Participar Evento
 
@@ -152,9 +160,17 @@ Evento criado.
 6. O sistema apresenta uma mensagem motivadora referente a categoria do evento em conjunto com mensagem de sucesso referente a confirmação de participação.
 
 **Fluxo Alternativo:** 
+1. O sistema pergunta se o aspirante deseja realmente participar do evento.
+2. Aspirante rejeita a participação no evento.
+3. O sistema redireciona o aspirante para o menu principal.
+
+**Fluxo Alternativo 2:**
+1. Aspirante seleciona algum participante do evento.
+2. Sistema apresenta as informações do respectivo participante.
 
 
 **Pós-Condições:**
+Aspirante se torna um participante do evento.
 
 
 
