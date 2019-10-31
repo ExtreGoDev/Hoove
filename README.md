@@ -112,8 +112,8 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 ### Especificações de Caso de Uso
 *******
-1. [UC001](#UC001)
-2. [UC002](#UC002)
+1. [UC001 Criar Evento](#UC001)
+2. [UC002 Participar Evento](#UC002)
 *******
 
 <div id="UC001" />
