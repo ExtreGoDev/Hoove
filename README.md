@@ -152,9 +152,16 @@ Evento criado.
 6. O sistema apresenta uma mensagem motivadora referente a categoria do evento em conjunto com mensagem de sucesso referente a confirmação de participação.
 
 **Fluxo Alternativo:** 
+- O sistema pergunta se o aspirante deseja realmente participar do evento.
+- Aspirante rejeita a participação no evento.
+- O sistema redireciona o aspirante para o menu principal.
 
+**Fluxo Alternativo 2:**
+- Aspirante seleciona algum participante do evento.
+- Sistema apresenta as informações do respectivo participante.
 
 **Pós-Condições:**
+- Aspirante se torna um participante do evento.
 
 **Nome de caso de uso:** [UC003] Cadastrar Aspirante
 
