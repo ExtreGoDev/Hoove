@@ -8,12 +8,11 @@
 4. [Objetivos](#statement)  
 5. [Requisitos](#Requirements)  
 6. [Diagrama de Caso de Uso](#uscd)  
-7. [Especificações de Casos de Uso](#duscd)
-8. [Diagrama de Classes](#cd)  
-9. [Diagrama de Sequência](#sd)  
-10. [Diagrama de Estado](#std)
-11. [Tecnologias](#tec)  
-12. [Core Team](#team)  
+7. [Diagrama de Classes](#cd)  
+8. [Diagrama de Sequência](#sd)  
+9. [Diagrama de Estado](#std)
+10. [Tecnologias](#tec)  
+11. [Core Team](#team)  
 
 
 *******
@@ -111,65 +110,77 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 <div id="duscd" />
 
 ### Especificações de Caso de Uso
-*******
-1. [UC001 Criar Evento](#UC001)
-2. [UC002 Participar Evento](#UC002)
-*******
-
-<div id="UC001" />
 
 **Nome de caso de uso:** [UC001] Criar Evento
 
-- **Objetivo:** Possibilitar ao aspirante à criar um evento.
+**Objetivo:** Possibilitar ao aspirante à criar um evento.
 
-- **Pré-condições:** Aspirante precisa estar logado no sistema.
+**Pré-condições:** Aspirante precisa estar logado no sistema.
 
-- **Fluxo Principal:** 
-   1. O sistema requisita a categoria do evento.
-   2. Aspirante seleciona a categoria do evento desejada e acessa prosseguir.
-   3. O sistema requisita as informações *gerais* do evento.
-   4. Aspirante fornece as informações *gerais* e acessa prosseguir.
-   5. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
-   6. O Aspirante seleciona a opção de prosseguir.
-   7. O sistema requisita as informações *especificas* referente à categoria do evento.
-   8. Aspirante fornece as informações *especificas* e acessa prosseguir.
-   9. O sistema apresenta mensagem de sucesso referente a criação do evento.
+**Fluxo Principal:** 
+1. O sistema requisita a categoria do evento.
+2. Aspirante seleciona a categoria do evento desejada e clica em prosseguir.
+3. O sistema requisita as informações *gerais* do evento.
+4. Aspirante fornece as informações *gerais* e clica em prosseguir.
+5. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
+6. O Aspirante seleciona a opção de prosseguir.
+7. O sistema requisita as informações *especificas* referente à categoria do evento.
+8. Aspirante fornece as informações *especificas* e clica em prosseguir.
+9. O sistema apresenta mensagem de sucesso referente a criação do evento.
 
-- **Fluxo Alternativo:** 
-   1. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
-   2. O aspirante seleciona a opção de não criar o evento.
-   3. O sistema retorna para o menu principal da aplicação.
+**Fluxo Alternativo:** 
+1. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
+2. O aspirante seleciona a opção de não criar o evento.
+3. O sistema retorna para o menu principal da aplicação.
 
-- **Pós-Condições:**
+**Pós-Condições:**
 Evento criado.
 
-<div id="UC002" />
 
 **Nome de caso de uso:** [UC002] Participar Evento
 
-- **Objetivo:** Possibilitar ao aspirante a participação em evento.
-- **Pré-condições:** Aspirante autenticado no sistema, evento buscado ou apresentado para o aspirante no menu principal.
-- **Fluxo Principal:** 
-   1. Aspirante seleciona evento.
-   2. O sistema apresenta as informações do evento.
-   3. Aspirante acessa participar evento.
-   4. O sistema pergunta se o aspirante deseja realmente participar do evento.
-   5. Aspirante confirma a sua futura participação no evento.
-   6. O sistema apresenta uma mensagem motivadora referente a categoria do evento em conjunto com mensagem de sucesso referente a confirmação de participação.
+**Objetivo:** Possibilitar ao aspirante a participação em evento.
 
-- **Fluxo Alternativo:** 
-   1. O sistema pergunta se o aspirante deseja realmente participar do evento.
-   2. Aspirante rejeita a participação no evento.
-   3. O sistema redireciona o aspirante para o menu principal.
+**Pré-condições:** Aspirante autenticado no sistema, evento buscado ou apresentado para o aspirante no menu principal.
 
-- **Fluxo Alternativo 2:**
-   1. Aspirante seleciona algum participante do evento.
-   2 . Sistema apresenta as informações do respectivo participante.
+**Fluxo Principal:** 
+1. Aspirante seleciona evento.
+2. O sistema apresenta as informações do evento.
+3. Aspirante clica em participar evento.
+4. O sistema pergunta se o aspirante deseja realmente participar do evento.
+5. Aspirante confirma a sua futura participação no evento.
+6. O sistema apresenta uma mensagem motivadora referente a categoria do evento em conjunto com mensagem de sucesso referente a confirmação de participação.
+
+**Fluxo Alternativo:** 
 
 
-- **Pós-Condições:**
-Aspirante se torna um participante do evento.
+**Pós-Condições:**
 
+**Nome de caso de uso:** [UC003] Cadastrar Aspirante
+
+**Objetivo:** Possibilitar a um aspirante acesso a craição e inscrição em eventos.
+
+**Pré-condições:** Não há.
+
+**Fluxo Principal:** 
+1. Aspirante acesssa a opçao "cadastre-se aqui".
+2. A aplicação fornece um tela de cadastro.
+3. Aspirante fornece nome, email, data de nascimento, cidade, estado, nome de usuario e senha .
+4. O aspirante selecionar o botão "cadastrar".
+5. O sistema verifica que as informações estão em um formato válido.
+6. O sistema Asmazena informaçoes do Apirante.
+7. Aspirante é direcionado para a tela principal.
+
+**Fluxo Alternativo:** 
+
+1. O sistema verifica que as informações não estão em um formato válido.
+2. O sistema exibe uma mensagem de erro e rediceriona o usuario para a tela de cadastro.
+3. O sistema verifica que as informações estão em um formato válido
+4. O sistema Asmazena informaçoes do Apirante.
+5. Aspirante é direcionado para a tela principal.
+
+**Pós-Condições:**
+Aspirante Cadastrado
 
 
 <div id="cd" />
