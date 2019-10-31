@@ -107,6 +107,56 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 ![diagrama_CU](https://user-images.githubusercontent.com/54459438/67315054-29a25e00-f4dc-11e9-869f-b02ceb1d748b.jpeg)
 
+<div id="duscd" />
+
+### Especificações de Caso de Uso
+
+**Nome de caso de uso:** [UC001] Criar Evento
+
+**Objetivo:** Possibilitar ao aspirante à criar um evento.
+
+**Pré-condições:** Aspirante precisa estar logado no sistema.
+
+**Fluxo Principal:** 
+1. O sistema requisita a categoria do evento.
+2. Aspirante seleciona a categoria do evento desejada e clica em prosseguir.
+3. O sistema requisita as informações *gerais* do evento.
+4. Aspirante fornece as informações *gerais* e clica em prosseguir.
+5. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
+6. O Aspirante seleciona a opção de prosseguir.
+7. O sistema requisita as informações *especificas* referente à categoria do evento.
+8. Aspirante fornece as informações *especificas* e clica em prosseguir.
+9. O sistema apresenta mensagem de sucesso referente a criação do evento.
+
+**Fluxo Alternativo:** 
+1. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
+2. O aspirante seleciona a opção de não criar o evento.
+3. O sistema retorna para o menu principal da aplicação.
+
+**Pós-Condições:**
+Evento criado.
+
+
+**Nome de caso de uso:** [UC002] Participar Evento
+
+**Objetivo:** Possibilitar ao aspirante a participação em evento.
+
+**Pré-condições:** Aspirante autenticado no sistema, evento buscado ou apresentado para o aspirante no menu principal.
+
+**Fluxo Principal:** 
+1. Aspirante seleciona evento.
+2. O sistema apresenta as informações do evento.
+3. Aspirante clica em participar evento.
+4. O sistema pergunta se o aspirante deseja realmente participar do evento.
+5. Aspirante confirma a sua futura participação no evento.
+6. O sistema apresenta uma mensagem motivadora referente a categoria do evento em conjunto com mensagem de sucesso referente a confirmação de participação.
+
+**Fluxo Alternativo:** 
+
+
+**Pós-Condições:**
+
+
 
 <div id="cd" />
 
