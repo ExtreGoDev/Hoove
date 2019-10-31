@@ -2,17 +2,19 @@
 
 *******
 
+
 1. [O Problema](#problem)  
 2. [O que é o goHealthy?](#whatgoHealthy)  
 3. [Protótipo](#prototype)  
 4. [Objetivos](#statement)  
 5. [Requisitos](#Requirements)  
 6. [Diagrama de Caso de Uso](#uscd)  
-7. [Diagrama de Classes](#cd)  
-8. [Diagrama de Sequência](#sd)  
-9. [Diagrama de Estado](#std)
-10. [Tecnologias](#tec)  
-11. [Core Team](#team)  
+7. [Especificações de Casos de Uso](#duscd)
+8. [Diagrama de Classes](#cd)  
+9. [Diagrama de Sequência](#sd)  
+10. [Diagrama de Estado](#std)
+11. [Tecnologias](#tec)  
+12. [Core Team](#team)  
 
 
 *******
@@ -110,7 +112,13 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 <div id="duscd" />
 
 ### Especificações de Caso de Uso
+*******
+1. [UC001 Criar Evento](#UC001)
+2. [UC002 Participar Evento](#UC002)
+3. [UC003 Cadastrar Aspirante](#UC003)
+*******
 
+<div id="UC001" />
 
 **Nome de caso de uso:** [UC001] Criar Evento
 
@@ -164,6 +172,7 @@ Evento criado.
 - **Pós-Condições:**
 Aspirante se torna um participante do evento.
 
+<div id="UC003" />
 
 **Nome de caso de uso:** [UC003] Cadastrar Aspirante
 
