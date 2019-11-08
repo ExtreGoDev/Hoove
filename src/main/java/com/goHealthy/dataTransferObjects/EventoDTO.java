@@ -16,7 +16,7 @@ public class EventoDTO {
     private String lugar;
     private String data;
     private String hora;
-    private Categoria categoria;
+    private String categoria;
     private Boolean status;
     Set<AspiranteDTO> participantesEvento;
     public EventoDTO(){
@@ -77,11 +77,11 @@ public class EventoDTO {
         this.hora = hora;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 

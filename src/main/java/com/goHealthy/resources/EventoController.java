@@ -9,6 +9,7 @@ import com.goHealthy.domain.Evento;
 import com.goHealthy.services.AspiranteService;
 import com.goHealthy.services.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,15 @@ public class EventoController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(evento.get());
+    }
+
+    @GetMapping("/page")
+    public Page<Evento> page(@RequestParam(value="page",defaultValue="0")Integer page,
+                             @RequestParam(value="linesPerPage",defaultValue="24")Integer linesPerPage,
+                             @RequestParam(value="orderBy",defaultValue="nome")String orderBy,
+                             @RequestParam(value="direction",defaultValue="ASC")String direction){
+        Page<Evento> eventosPage = eventoService.findPage(page,linesPerPage,direction,orderBy);
+        return eventosPage;
     }
 
     @PostMapping("/{id}/participate")

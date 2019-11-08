@@ -6,6 +6,9 @@ import com.goHealthy.domain.Evento;
 import com.goHealthy.repositories.AspiranteRepository;
 import com.goHealthy.repositories.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +41,10 @@ public class EventoService {
         repository.deleteById(id);
     }
 
+    public Page<Evento> findPage(Integer page, Integer linesPerPage, String direction, String orderBy){
+        return repository.findAll(PageRequest.of(page,linesPerPage, Direction.valueOf(direction),orderBy));
+    }
+
     //Need work
     public Evento put(Evento evento){
         //Pass the informations than can be updated in the object.
@@ -56,7 +63,7 @@ public class EventoService {
     //DTO approach, need delete this if i decide not use it
     public EventoDTO toDTO(Evento evento){
         EventoDTO eventoDTO= new EventoDTO();
-        eventoDTO.setCategoria(evento.getCategoria());
+       // eventoDTO.setCategoria(evento.getCategoria());
         eventoDTO.setData(evento.getData());
         eventoDTO.setHora(evento.getHora());
         eventoDTO.setId(evento.getId());

@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class GoHealthyApplication implements CommandLineRunner {
 	@Autowired
 	private AspiranteRepository aspiranteRepository;
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
@@ -33,5 +34,9 @@ public class GoHealthyApplication implements CommandLineRunner {
 		Aspirante aspirante2=new Aspirante("MeuAmigo","Brother@gmail.com", "66666666",  encoder.encode("123"));
 		aspiranteRepository.save(aspirante1);
 		aspiranteRepository.save(aspirante2);
+
+		aspirante1.addAmigo(aspirante2);
+		aspiranteRepository.save(aspirante1);
+
 	}
 }

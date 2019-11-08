@@ -4,6 +4,8 @@ package com.goHealthy.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
@@ -23,6 +25,21 @@ public class Aspirante implements Serializable {
     private Double avaliacao;
     private Boolean status;
     private String senha;
+    private String foto;
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name="tabela_amigos",
+    joinColumns = @JoinColumn(name="aspiranteId"),
+    inverseJoinColumns = @JoinColumn(name="amigoId"))
+    private List<Aspirante> amigos = new ArrayList();
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name="tabela_amigos",
+            joinColumns = @JoinColumn(name="amigoId"),
+            inverseJoinColumns = @JoinColumn(name="aspiranteId"))
+    private List<Aspirante> amigoDe = new ArrayList();
 
     @JsonIgnore
     @ManyToMany(mappedBy="participantesEvento")
@@ -31,6 +48,7 @@ public class Aspirante implements Serializable {
     public String getNome() {
         return nome;
     }
+
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -54,6 +72,30 @@ public class Aspirante implements Serializable {
 
     public String getNumero() {
         return numero;
+    }
+
+    public List<Aspirante> getAmigos() {
+        return amigos;
+    }
+    public void addAmigo(Aspirante aspirante){
+        this.getAmigos().add(aspirante);
+    }
+
+    public void delAmigo(Aspirante aspirante){
+        this.getAmigos().remove(aspirante);
+        aspirante.getAmigoDe().remove(this);
+    }
+
+    public void setAmigos(List<Aspirante> amigos) {
+        this.amigos = amigos;
+    }
+
+    public List<Aspirante> getAmigoDe() {
+        return this.amigoDe;
+    }
+
+    public void setAmigoDe(List<Aspirante> amigoDe) {
+        this.amigoDe = amigoDe;
     }
 
     public void setNumero(String numero) {
@@ -96,6 +138,9 @@ public class Aspirante implements Serializable {
         return senha;
     }
 
+
+
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -106,6 +151,14 @@ public class Aspirante implements Serializable {
         if (!(o instanceof Aspirante)) return false;
         Aspirante aspirante = (Aspirante) o;
         return getId().equals(aspirante.getId());
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     @Override
