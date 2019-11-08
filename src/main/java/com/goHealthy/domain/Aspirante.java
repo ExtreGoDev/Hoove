@@ -80,6 +80,9 @@ public class Aspirante implements Serializable {
     public void addAmigo(Aspirante aspirante){
         this.getAmigos().add(aspirante);
     }
+    public void aceitarAmizade(Aspirante aspirante){
+        this.getAmigoDe().add(aspirante);
+    }
 
     public void delAmigo(Aspirante aspirante){
         this.getAmigos().remove(aspirante);

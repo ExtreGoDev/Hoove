@@ -20,8 +20,8 @@ public class AmizadeController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<Aspirante>> getAll(@PathVariable Integer id){
-        Optional<List<Aspirante>> amizades=amizadeService.getAll(id);
+    public ResponseEntity<List<Aspirante>> getAmigos(@PathVariable Integer id){
+        Optional<List<Aspirante>> amizades=amizadeService.getAmigos(id);
         if (amizades.isPresent()){
             return ResponseEntity.ok(amizades.get());
         }
@@ -30,13 +30,32 @@ public class AmizadeController {
         }
     }
 
+    @GetMapping("/{id}/pendentes")
+    public ResponseEntity<List<Aspirante>> getPedidosAmizade(@PathVariable Integer id) {
+        return ResponseEntity.ok(amizadeService.getPedidosAmizade(id));
+    }
+
     @PostMapping("/{id}/add")
     @ResponseStatus(HttpStatus.CREATED)
     public void addAmigo (@PathVariable Integer id,@RequestParam Integer asp_id){
         Optional<Aspirante> aspirante=amizadeService.findById(id);
         Optional<Aspirante> aspiranteAmigo=amizadeService.findById(asp_id);
-        if(aspirante.isPresent() && aspiranteAmigo.isPresent()){
+        List<Aspirante> listaAmigos = aspirante.get().getAmigos();
+        if(aspirante.isPresent() && aspiranteAmigo.isPresent() && !(listaAmigos.contains(aspiranteAmigo))){
             aspirante.get().addAmigo(aspiranteAmigo.get());
+            amizadeService.postAspirante(aspirante.get());
+            amizadeService.postAspirante(aspiranteAmigo.get());
+        }
+    }
+
+    //essa é a logica inversa de /{id}/add, precisa verificar se o aspiranteAmigo contém o pedido de amizade.
+    @PostMapping("/{id}/accept")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void aceitarPedido (@PathVariable Integer id,@RequestParam Integer request){
+        Optional<Aspirante> aspirante=amizadeService.findById(id);
+        Optional<Aspirante> aspiranteAmigo=amizadeService.findById(request);
+        if(aspirante.isPresent() && aspiranteAmigo.isPresent() && amizadeService.checarPedido(aspiranteAmigo.get(),aspirante.get())){
+            aspiranteAmigo.get().aceitarAmizade(aspirante.get());
             amizadeService.postAspirante(aspirante.get());
             amizadeService.postAspirante(aspiranteAmigo.get());
         }
@@ -49,7 +68,8 @@ public class AmizadeController {
     public void delete(@PathVariable Integer id,@RequestParam Integer asp_id){
         Optional<Aspirante> aspirante=amizadeService.findById(id);
         Optional<Aspirante> aspiranteAmigo=amizadeService.findById(asp_id);
-        if(aspirante.isPresent() && aspiranteAmigo.isPresent()) {
+        List<Aspirante> listaAmigos = aspirante.get().getAmigos();
+        if(aspirante.isPresent() && aspiranteAmigo.isPresent() && (!(listaAmigos.contains(aspiranteAmigo)))) {
             aspirante.get().delAmigo(aspiranteAmigo.get());
             amizadeService.postAspirante(aspirante.get());
             amizadeService.postAspirante(aspiranteAmigo.get());
