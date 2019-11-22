@@ -1,6 +1,7 @@
 package com.goHealthy.dataTransferObjects;
 
 import com.goHealthy.domain.Aspirante;
+import com.goHealthy.domain.Categoria;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class EventoDTO {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
 
     public Integer getId() {
         return id;

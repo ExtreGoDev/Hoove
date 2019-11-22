@@ -4,6 +4,7 @@ import com.goHealthy.dataTransferObjects.AspiranteDTO;
 import com.goHealthy.domain.Aspirante;
 import com.goHealthy.repositories.AspiranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +14,9 @@ public class AspiranteService {
 
     @Autowired
     AspiranteRepository aspiranteRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     public Optional<Aspirante> find(Integer id){
         return aspiranteRepository.findById(id);
@@ -33,5 +37,10 @@ public class AspiranteService {
 
     public void deleteById(Integer id) {
         aspiranteRepository.deleteById(id);
+    }
+
+    public Aspirante post(Aspirante aspirante) {
+        aspirante.setSenha(encoder.encode(aspirante.getSenha()));
+        return aspiranteRepository.save(aspirante);
     }
 }

@@ -12,7 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SpringSecurity extends WebSecurityConfigurerAdapter {
     private static final String[] PUBLIC_MATCHERS = {
-            "/eventos/**"
+            "/eventos/**",
+            "/aspirantes/**"
     };
 
     private static final String[] PUBLIC_MATCHERS_GET = {

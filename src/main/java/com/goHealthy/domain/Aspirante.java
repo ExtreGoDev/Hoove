@@ -4,6 +4,8 @@ package com.goHealthy.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
@@ -20,9 +22,24 @@ public class Aspirante implements Serializable {
     private String email;
     private String numero;
     private String conquista;
-    private Integer avaliacao;
+    private Double avaliacao;
     private Boolean status;
     private String senha;
+    private String foto;
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name="tabela_amigos",
+    joinColumns = @JoinColumn(name="aspiranteId"),
+    inverseJoinColumns = @JoinColumn(name="amigoId"))
+    private List<Aspirante> amigos = new ArrayList();
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name="tabela_amigos",
+            joinColumns = @JoinColumn(name="amigoId"),
+            inverseJoinColumns = @JoinColumn(name="aspiranteId"))
+    private List<Aspirante> amigoDe = new ArrayList();
 
     @JsonIgnore
     @ManyToMany(mappedBy="participantesEvento")
@@ -31,6 +48,7 @@ public class Aspirante implements Serializable {
     public String getNome() {
         return nome;
     }
+
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -56,6 +74,33 @@ public class Aspirante implements Serializable {
         return numero;
     }
 
+    public List<Aspirante> getAmigos() {
+        return amigos;
+    }
+    public void addAmigo(Aspirante aspirante){
+        this.getAmigos().add(aspirante);
+    }
+    public void aceitarAmizade(Aspirante aspirante){
+        this.getAmigoDe().add(aspirante);
+    }
+
+    public void delAmigo(Aspirante aspirante){
+        this.getAmigos().remove(aspirante);
+        aspirante.getAmigoDe().remove(this);
+    }
+
+    public void setAmigos(List<Aspirante> amigos) {
+        this.amigos = amigos;
+    }
+
+    public List<Aspirante> getAmigoDe() {
+        return this.amigoDe;
+    }
+
+    public void setAmigoDe(List<Aspirante> amigoDe) {
+        this.amigoDe = amigoDe;
+    }
+
     public void setNumero(String numero) {
         this.numero = numero;
     }
@@ -68,7 +113,7 @@ public class Aspirante implements Serializable {
         this.conquista = conquista;
     }
 
-    public Integer getAvaliacao() {
+    public Double getAvaliacao() {
         return avaliacao;
     }
 
@@ -80,7 +125,7 @@ public class Aspirante implements Serializable {
         this.participandoEventos = participandoEventos;
     }
 
-    public void setAvaliacao(Integer avaliacao) {
+    public void setAvaliacao(Double avaliacao) {
         this.avaliacao = avaliacao;
     }
 
@@ -96,6 +141,9 @@ public class Aspirante implements Serializable {
         return senha;
     }
 
+
+
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -108,17 +156,26 @@ public class Aspirante implements Serializable {
         return getId().equals(aspirante.getId());
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(getId());
     }
 
-    public Aspirante(String nome, String email, String numero, Boolean status, String senha) {
+    public Aspirante(String nome, String email, String numero, String senha) {
         this.nome = nome;
         this.email = email;
         this.numero = numero;
-        this.status = status;
+        this.setStatus(true);
         this.senha = senha;
+        this.setAvaliacao(4.5);
     }
     public Aspirante(){
 

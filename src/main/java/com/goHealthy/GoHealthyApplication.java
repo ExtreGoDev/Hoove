@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class GoHealthyApplication implements CommandLineRunner {
 	@Autowired
 	private AspiranteRepository aspiranteRepository;
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
@@ -28,10 +29,14 @@ public class GoHealthyApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Aspirante aspirante1=new Aspirante("Lucas","lucasvufma@gmail.com", "98986024266", true, encoder.encode("123"));
+		Aspirante aspirante1=new Aspirante("Lucas","lucasvufma@gmail.com", "98986024266", encoder.encode("123"));
 		//encode.matches(password,user.getPassword()) this is the way to check if the encoded pass matches
-		Aspirante aspirante2=new Aspirante("MeuAmigo","Brother@gmail.com", "66666666", true, encoder.encode("123"));
+		Aspirante aspirante2=new Aspirante("MeuAmigo","Brother@gmail.com", "66666666",  encoder.encode("123"));
 		aspiranteRepository.save(aspirante1);
 		aspiranteRepository.save(aspirante2);
+
+		aspirante1.addAmigo(aspirante2);
+		aspiranteRepository.save(aspirante1);
+
 	}
 }

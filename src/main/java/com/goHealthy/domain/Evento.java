@@ -1,7 +1,5 @@
 package com.goHealthy.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -61,6 +59,14 @@ public class  Evento implements Serializable {
 		return status;
 	}
 
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
@@ -97,13 +103,6 @@ public class  Evento implements Serializable {
 		this.hora = hora;
 	}
 
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
 
 	@Override
 	public int hashCode() {
