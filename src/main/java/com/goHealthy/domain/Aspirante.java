@@ -2,7 +2,7 @@ package com.goHealthy.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 import java.io.Serializable;
@@ -27,7 +27,7 @@ public class Aspirante implements Serializable {
     private Double avaliacao;
     private Boolean status;
     private String senha;
-    private String foto;
+    private Integer idade;
 
     @ManyToMany
     @JsonIgnore
@@ -131,6 +131,14 @@ public class Aspirante implements Serializable {
         this.avaliacao = avaliacao;
     }
 
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
     public Boolean getStatus() {
         return status;
     }
@@ -158,26 +166,21 @@ public class Aspirante implements Serializable {
         return getId().equals(aspirante.getId());
     }
 
-    public String getFoto() {
-        return foto;
-    }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId());
     }
 
-    public Aspirante(String nome, String email, String numero, String senha) {
+    public Aspirante(String nome, String email, String numero, String senha,Integer idade) {
         this.nome = nome;
         this.email = email;
         this.numero = numero;
         this.setStatus(true);
         this.senha = senha;
         this.setAvaliacao(4.5);
+        this.idade=idade;
     }
     public Aspirante(){
 

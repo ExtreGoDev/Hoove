@@ -62,7 +62,9 @@ public class EventoController {
             Optional<Aspirante> aspiranteById=aspiranteService.find(aspirante.getId());
             if(aspiranteById.isPresent()){
                 evento.get().getParticipantesEvento().add(aspiranteById.get());
+                evento.get().updateMediaIdade();
                 eventoService.post(evento.get());
+
                 return ResponseEntity.ok(evento.get());
             }
             return ResponseEntity.notFound().build();
@@ -76,6 +78,7 @@ public class EventoController {
         if(evento.isPresent() && aspiranteById.isPresent()){
             if(aspiranteById.get().getParticipandoEventos().contains(evento.get()) && evento.get().getParticipantesEvento().contains(aspiranteById.get())){
                 evento.get().getParticipantesEvento().remove(aspiranteById.get());
+                evento.get().updateMediaIdade();
                 eventoService.post(evento.get());
             }
 

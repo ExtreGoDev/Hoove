@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
+
 @Entity
 public class  Evento implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +19,7 @@ public class  Evento implements Serializable {
 	private LocalDateTime dataHoraFim;
 	private String categoria;
 	private Boolean status;
+	private Integer mediaIdadeParticipantes;
 
 	@ManyToMany
 	@JoinTable(
@@ -77,6 +79,25 @@ public class  Evento implements Serializable {
 		return participantesEvento;
 	}
 
+	public void updateMediaIdade(){
+		int count =0;
+		int total=0;
+		for(Aspirante aspirante : this.getParticipantesEvento()){
+			total= total + aspirante.getIdade();
+			count++;
+		}
+		if(total!=0 && count!=0){
+			double media=total/count;
+			this.setMediaIdadeParticipantes(
+					(int)media
+			);
+		}
+		else{
+			this.setMediaIdadeParticipantes(0);
+		}
+	}
+
+
 	public void setParticipantesEvento(Set<Aspirante> participantesEvento) {
 		this.participantesEvento = participantesEvento;
 	}
@@ -99,6 +120,14 @@ public class  Evento implements Serializable {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public Integer getMediaIdadeParticipantes() {
+		return mediaIdadeParticipantes;
+	}
+
+	public void setMediaIdadeParticipantes(Integer mediaIdadeParticipantes) {
+		this.mediaIdadeParticipantes = mediaIdadeParticipantes;
 	}
 
 	public String getNome() {
