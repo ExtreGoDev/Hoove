@@ -62,15 +62,9 @@ public class EventoController {
             Optional<Aspirante> aspiranteById=aspiranteService.find(aspirante.getId());
             if(aspiranteById.isPresent()){
                 evento.get().getParticipantesEvento().add(aspiranteById.get());
+                evento.get().updateMediaIdade();
                 eventoService.post(evento.get());
-                /* i just dont return evento.get() in this way with the true object aspirante because will be have ciclique reference
-                and i cant use @JsonIgnore in Aspirante, cause i will need get later the set<Eventos> in a endPoint for Aspirantes
-                is nice to see than i'm persisting the true object, but i'm sending different object to API a DTO one, thats the concept
-                of data transfer object*/
-              // AspiranteDTO aspiranteDTO=aspiranteService.toDTO(aspiranteById.get());
-               // EventoDTO eventoDTO=eventoService.toDTO(evento.get());
-                //eventoDTO.getParticipantesEvento().add(aspiranteDTO);
-                //return ResponseEntity.ok(eventoDTO);
+
                 return ResponseEntity.ok(evento.get());
             }
             return ResponseEntity.notFound().build();
@@ -84,32 +78,23 @@ public class EventoController {
         if(evento.isPresent() && aspiranteById.isPresent()){
             if(aspiranteById.get().getParticipandoEventos().contains(evento.get()) && evento.get().getParticipantesEvento().contains(aspiranteById.get())){
                 evento.get().getParticipantesEvento().remove(aspiranteById.get());
+                evento.get().updateMediaIdade();
                 eventoService.post(evento.get());
             }
 
         }
     }
-
-    /* deleting by object in post
-    @PostMapping("/{id}/participate")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id,@RequestBody Aspirante aspirante){
-        Optional<Aspirante> aspiranteById=aspiranteService.find(aspirante.getId());
-        Optional<Evento> evento = eventoService.find(id);
-        if(evento.isPresent() && aspiranteById.isPresent()){
-            if(aspiranteById.get().getParticipandoEventos().contains(evento.get()) && evento.get().getParticipantesEvento().contains(aspiranteById.get())){
-                evento.get().getParticipantesEvento().remove(aspiranteById.get());
-                eventoService.post(evento.get());
-            }
-
-        }
-    }
-    */
-
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Evento post(@RequestBody Evento evento){
-        return eventoService.post(evento);
+    public Evento post(@RequestBody EventoDTO evento){
+        Evento eventoParsed = new Evento(
+                evento.getNome(),
+                evento.getLugar(),
+                evento.getCategoria(),
+                evento.getStatus(),
+                evento.getDataHoraInicio(),
+                evento.getDuracao());
+        return eventoService.post(eventoParsed);
     }
 }

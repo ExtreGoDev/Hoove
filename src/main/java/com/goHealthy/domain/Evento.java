@@ -2,7 +2,10 @@ package com.goHealthy.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
+
 
 @Entity
 public class  Evento implements Serializable {
@@ -12,10 +15,11 @@ public class  Evento implements Serializable {
 	private Integer id;
 	private String nome;	
 	private String lugar;
-	private String data;
-	private String hora;
+	private LocalDateTime dataHoraInicio;
+	private LocalDateTime dataHoraFim;
 	private String categoria;
 	private Boolean status;
+	private Integer mediaIdadeParticipantes;
 
 	@ManyToMany
 	@JoinTable(
@@ -28,24 +32,71 @@ public class  Evento implements Serializable {
 		
 	}
 			
-	public Evento(Integer id, String nome, String lugar, String hora,String data, String categoria, Boolean status) {
+	public Evento(String nome, String lugar, String categoria, Boolean status, String dataHoraInicio,String duracao) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.lugar = lugar;
-		this.hora = hora;
 		this.categoria = categoria;
 		this.status=status;
+		this.dataHoraInicio=this.parsingStringToDateTime(dataHoraInicio);
+		this.dataHoraFim=expireDateTime(this.dataHoraInicio,duracao);
+	}
+
+	private LocalDateTime parsingStringToDateTime(String dataHoraInicio) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		LocalDateTime formatedDateTime = LocalDateTime.parse(
+				dataHoraInicio,formatter
+		);
+		return formatedDateTime;
+	}
+
+	public LocalDateTime expireDateTime(LocalDateTime dataHoraInicio,String hours){
+		Long hoursLong = Long.parseLong(hours,10);
+		return dataHoraInicio.plusHours(hoursLong);
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
+	public LocalDateTime getDataHoraInicio() {
+		return dataHoraInicio;
+	}
+
+	public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
+		this.dataHoraInicio = dataHoraInicio;
+	}
+
+	public LocalDateTime getDataHoraFim() {
+		return dataHoraFim;
+	}
+
+	public void setDataHoraFim(LocalDateTime dataHoraFim) {
+		this.dataHoraFim = dataHoraFim;
+	}
 
 	public Set<Aspirante> getParticipantesEvento() {
 		return participantesEvento;
 	}
+
+	public void updateMediaIdade(){
+		int count =0;
+		int total=0;
+		for(Aspirante aspirante : this.getParticipantesEvento()){
+			total= total + aspirante.getIdade();
+			count++;
+		}
+		if(total!=0 && count!=0){
+			double media=total/count;
+			this.setMediaIdadeParticipantes(
+					(int)media
+			);
+		}
+		else{
+			this.setMediaIdadeParticipantes(0);
+		}
+	}
+
 
 	public void setParticipantesEvento(Set<Aspirante> participantesEvento) {
 		this.participantesEvento = participantesEvento;
@@ -71,16 +122,16 @@ public class  Evento implements Serializable {
 		this.status = status;
 	}
 
+	public Integer getMediaIdadeParticipantes() {
+		return mediaIdadeParticipantes;
+	}
+
+	public void setMediaIdadeParticipantes(Integer mediaIdadeParticipantes) {
+		this.mediaIdadeParticipantes = mediaIdadeParticipantes;
+	}
+
 	public String getNome() {
 		return nome;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
 	}
 
 	public void setNome(String nome) {
@@ -93,14 +144,6 @@ public class  Evento implements Serializable {
 
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
-	}
-
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
 	}
 
 

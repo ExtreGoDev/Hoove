@@ -64,8 +64,6 @@ public class EventoService {
     public EventoDTO toDTO(Evento evento){
         EventoDTO eventoDTO= new EventoDTO();
        // eventoDTO.setCategoria(evento.getCategoria());
-        eventoDTO.setData(evento.getData());
-        eventoDTO.setHora(evento.getHora());
         eventoDTO.setId(evento.getId());
         eventoDTO.setLugar(evento.getLugar());
         eventoDTO.setNome(evento.getNome());
