@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 @SpringBootApplication
 public class GoHealthyApplication implements CommandLineRunner {
@@ -37,6 +40,8 @@ public class GoHealthyApplication implements CommandLineRunner {
 
 		aspirante1.addAmigo(aspirante2);
 		aspiranteRepository.save(aspirante1);
+
+
 
 	}
 }

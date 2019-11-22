@@ -2,6 +2,8 @@ package com.goHealthy.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @Entity
@@ -12,8 +14,8 @@ public class  Evento implements Serializable {
 	private Integer id;
 	private String nome;	
 	private String lugar;
-	private String data;
-	private String hora;
+	private LocalDateTime dataHoraInicio;
+	private LocalDateTime dataHoraFim;
 	private String categoria;
 	private Boolean status;
 
@@ -28,20 +30,48 @@ public class  Evento implements Serializable {
 		
 	}
 			
-	public Evento(Integer id, String nome, String lugar, String hora,String data, String categoria, Boolean status) {
+	public Evento(String nome, String lugar, String categoria, Boolean status, String dataHoraInicio,String duracao) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.lugar = lugar;
-		this.hora = hora;
 		this.categoria = categoria;
 		this.status=status;
+		this.dataHoraInicio=this.parsingStringToDateTime(dataHoraInicio);
+		this.dataHoraFim=expireDateTime(this.dataHoraInicio,duracao);
+	}
+
+	private LocalDateTime parsingStringToDateTime(String dataHoraInicio) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		LocalDateTime formatedDateTime = LocalDateTime.parse(
+				dataHoraInicio,formatter
+		);
+		return formatedDateTime;
+	}
+
+	public LocalDateTime expireDateTime(LocalDateTime dataHoraInicio,String hours){
+		Long hoursLong = Long.parseLong(hours,10);
+		return dataHoraInicio.plusHours(hoursLong);
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
+	public LocalDateTime getDataHoraInicio() {
+		return dataHoraInicio;
+	}
+
+	public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
+		this.dataHoraInicio = dataHoraInicio;
+	}
+
+	public LocalDateTime getDataHoraFim() {
+		return dataHoraFim;
+	}
+
+	public void setDataHoraFim(LocalDateTime dataHoraFim) {
+		this.dataHoraFim = dataHoraFim;
+	}
 
 	public Set<Aspirante> getParticipantesEvento() {
 		return participantesEvento;
@@ -75,14 +105,6 @@ public class  Evento implements Serializable {
 		return nome;
 	}
 
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -93,14 +115,6 @@ public class  Evento implements Serializable {
 
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
-	}
-
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
 	}
 
 
