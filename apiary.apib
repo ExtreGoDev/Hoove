@@ -298,7 +298,7 @@ o id do respectivo aspirante deve ser passado no **Body** da requisição.
         }
 
 
-## Aspirante [/aspirantes]
+## Aspirant [/aspirantes]
 
 Requisições gerais para todos os aspirantes.
 
@@ -330,16 +330,16 @@ Requisição de registro temporaria.
                 "idade": 15
             }
 
-## Specific Aspirante  [/aspirantes/{id}]
+## Specific Aspirant  [/aspirantes/{id}]
 Requisições para aspirante específico.
 
-### Delte Aspirante [DELETE]
+### Delete Aspirant [DELETE]
 + Parameters
     + id (number) - ID do aspirante
 
 + Response 204
 
-### Get Aspirante [GET]
+### Get Aspirant [GET]
 + Response 201 (application/json)
 
          {
@@ -354,4 +354,75 @@ Requisições para aspirante específico.
             "idade": 20
          }   
 
+
+## Friendship [/amizades/{id}]
+Endpoint de amizades.
+
+### Get Friendship [GET]
+Retorna uma lista das amizades de um aspirante específico.
+
++ Parameters
+    + id (number) - ID do aspirante
+
++ Response 200 (application/json)
+
+        [
+            {
+                "nome": "Lucas",
+                "id": 1,
+                "email": "lucasvufma@gmail.com",
+                "numero": "98986024266",
+                "conquista": null,
+                "avaliacao": 4.5,
+                "status": true,
+                "senha": "$2a$10$mnj3jeQYsfnLmFdjT0VfDe99v8QPxvfSGeDDsq3hMke0iVLJWaOGS",
+                "foto": null
+
+            }
+
+        ]
+
+## Friendship Requests [/amizades/{id}/pendentes]
+Endpoint de pedidos de amizade pendentes.
+
+### Get Friendship Requests[GET]
+Retorna uma lista de aspirantes que solicitaram amizade e estão pendentes.
+
++ Parameters
+    + id (number) - ID do aspirante
+
++ Response 200 (application/json)
+
+        [
+            {
+                "nome": "Lucas",
+                "id": 1,
+                "email": "lucasvufma@gmail.com",
+                "numero": "98986024266",
+                "conquista": null,
+                "avaliacao": 4.5,
+                "status": true,
+                "senha": "$2a$10$ERAl1X999ZlM.n3o9AZ9kOMAct70xnnqSJkOucup.2am5trtNNbVu",
+                "foto": null
+            }
+        ]
+
+## Request Friendship [/amizades/{id}/add?asp_id={aspirant_id}]
+Endpoint para solicitar amizade.
+### Post Friendship Request[POST]
++ Parameters
+    + id (number) - ID do aspirante que está solicitando a amizade.
+    + aspirant_id (number) - ID do aspirante que está sendo enviado o pedido.
+
++ Response 201 
+
+
+## Accept Friendship [/amizades/{id}/accept?request={aspirant_id}]
+Endpoint para aceitar solicitação de amizade.
+### Post Accept Friendship Request[POST]
++ Parameters
+    + id (number) - ID do aspirante que está aceitando o pedido de amizade.
+    + aspirant_id (number) - ID do aspirante dono do pedido de amizade.
+
++ Response 201
 
