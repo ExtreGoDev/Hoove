@@ -1,80 +1,292 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: hoove.herokuapp.com/
 
-# hoover
+# hoove
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Hoove é a API de uma aplicação de mesmo nome, cuja tem o objetivo de melhorar a saúde dos usuários por meio da prática de atividades físicas, baseada no poder coletivo. 
 
-## Questions Collection [/questions]
-
-### List All Questions [GET]
+# Event [/eventos]
+### Get List of Events [GET]
 
 + Response 200 (application/json)
 
         [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 1,
+                    "nome": "corrida dos brother",
+                    "lugar": "casa da mae joana",
+                    "dataHoraInicio": "2019-12-22T20:20:00",
+                    "dataHoraFim": "2019-12-23T20:20:00",
+                    "categoria": "Corrida",
+                    "status": true,
+                    "mediaIdadeParticipantes": null,
+                    "participantesEvento": []
+                },
+                {
+                    "id": 11,
+                    "nome": "corrida da galera",
+                    "lugar": "praça central",
+                    "dataHoraInicio": "2019-12-22T23:20:00",
+                    "dataHoraFim": "2019-12-23T23:20:00",
+                    "categoria": "Corrida",
+                    "status": true,
+                    "mediaIdadeParticipantes": null,
+                    "participantesEvento": []
+                }
+            ]
         ]
 
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Post Event[POST]
+Cria um evento, o banco de dados incrementa o id sempre de 10 em 10.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "nome":"corrida da galera",
+            "lugar":"praça central",
+            "dataHoraInicio":"22/12/2019 23:20",
+            "duracao": "24",
+            "categoria":"Corrida",
+            "status":true
         }
 
 + Response 201 (application/json)
 
-    + Headers
+              {
+                    "id": 11,
+                    "nome": "corrida da galera",
+                    "lugar": "praça central",
+                    "dataHoraInicio": "2019-12-22T23:20:00",
+                    "dataHoraFim": "2019-12-23T23:20:00",
+                    "categoria": "Corrida",
+                    "status": true,
+                    "mediaIdadeParticipantes": null,
+                    "participantesEvento": null
+                }
 
-            Location: /questions/2
+## Event By Id [/eventos/{id}]
+### Get Event By Id[GET]
++ Parameters
+    + id (number) - ID do evento 
+    
 
-    + Body
++ Response 200 (application/json)
 
+        
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "id": 2,
+                "nome": "corrida da galera da rua",
+                "lugar": "praça central",
+                "dataHoraInicio": "2019-12-22T20:20:00",
+                "dataHoraFim": "2019-12-23T20:20:00",
+                "categoria": "Corrida",
+                "status": true,
+                "mediaIdadeParticipantes": null,
+                "participantesEvento": []
+            }
+        
+
+## Event Paginated [/eventos/page]
+
+### Get Page of Events[GET]
+
++ Response 200 (application/json)
+
+        {
+            "content": [
+                {
+                "id": 11,
+                "nome": "corrida da galera",
+                "lugar": "praça central",
+                "dataHoraInicio": "2019-12-22T23:20:00",
+                "dataHoraFim": "2019-12-23T23:20:00",
+                "categoria": "Corrida",
+                "status": true,
+                "mediaIdadeParticipantes": null,
+                "participantesEvento": []
+                },
+                {
+                "id": 1,
+                "nome": "corrida dos brother",
+                "lugar": "casa da mae joana",
+                "dataHoraInicio": "2019-12-22T20:20:00",
+                "dataHoraFim": "2019-12-23T20:20:00",
+                "categoria": "Corrida",
+                "status": true,
+                "mediaIdadeParticipantes": null,
+                "participantesEvento": []
+                }
+            ],
+            "pageable": {
+                "sort": {
+                "sorted": true,
+                "unsorted": false,
+                "empty": false
+                },
+                "pageSize": 24,
+                "pageNumber": 0,
+                "offset": 0,
+                "paged": true,
+                "unpaged": false
+            },
+            "totalPages": 1,
+            "totalElements": 2,
+            "last": true,
+            "first": true,
+            "sort": {
+                "sorted": true,
+                "unsorted": false,
+                "empty": false
+            },
+            "numberOfElements": 2,
+            "size": 24,
+            "number": 0,
+            "empty": false
+        }
+
+## Get Event Page With Arguments [/eventos/page?page={page_number}&orderBy={argument}&direction={direc_value}]
+### Get Event Page Number, Ordened By Some Argument and Ascendent or Descendent[GET]
+Retorna evento em forma de página de acordo com os argumentos impostos, exemplo a seguir foi requisitado em
+> /eventos/page?page=0&orderBy=nome&direction=DESC
+
++ Parameters
+    + page_number (number) - Número da página.
+    + argument (string) - nome do argumento a ser ordenado, por exemplo: nome,hora,lugar.
+    + direc_value (string) - ASC ou DESC, indica se vai ser ordenado em ordem crescente ou decrescente.
+
+
++ Response 200 (application/json)
+
+
+        {
+            "content": [
+                {
+                "id": 5,
+                "nome": "zaaaaaacorrida dos brother",
+                "lugar": "casa da mae joana",
+                "data": null,
+                "hora": "20:20",
+                "categoria": "Corrida",
+                "status": true,
+                "participantesEvento": []
+                },
+                {
+                "id": 1,
+                "nome": "corrida dos brother",
+                "lugar": "casa da mae joana",
+                "data": null,
+                "hora": "20:20",
+                "categoria": "Corrida",
+                "status": true,
+                "participantesEvento": []
+                },
+                {
+                "id": 2,
+                "nome": "corrida dos brother",
+                "lugar": "casa da mae joana",
+                "data": null,
+                "hora": "20:20",
+                "categoria": "Corrida",
+                "status": true,
+                "participantesEvento": []
+                },
+                {
+                "id": 3,
+                "nome": "aacorrida dos brother",
+                "lugar": "casa da mae joana",
+                "data": null,
+                "hora": "20:20",
+                "categoria": "Corrida",
+                "status": true,
+                "participantesEvento": []
+                },
+                {
+                "id": 4,
+                "nome": "aaaaaacorrida dos brother",
+                "lugar": "casa da mae joana",
+                "data": null,
+                "hora": "20:20",
+                "categoria": "Corrida",
+                "status": true,
+                "participantesEvento": []
+                }
+            ],
+            "pageable": {
+                "sort": {
+                "sorted": true,
+                "unsorted": false,
+                "empty": false
+                },
+                "pageSize": 24,
+                "pageNumber": 0,
+                "offset": 0,
+                "paged": true,
+                "unpaged": false
+            },
+            "totalPages": 1,
+            "totalElements": 5,
+            "last": true,
+            "first": true,
+            "sort": {
+                "sorted": true,
+                "unsorted": false,
+                "empty": false
+            },
+            "number": 0,
+            "numberOfElements": 5,
+            "size": 24,
+            "empty": false
+        }
+## Quit Event [/eventos/{event_id}/quit?asp_id={aspirant_id}]
+### Quit Event[DEL]
+
+Permite aspirante sair de um evento que participa.
+
++ Parameters
+    + event_id (number) - ID do evento
+    + aspirant_id (number) - ID do aspirante
+
+
+
+## Participate Event [/eventos/{id}/participate]
+
+### Participate Event[POST]
+
+Permite determinado aspirante participar de um evento, 
+o id do respectivo aspirante deve ser passado no **Body** da requisição.
+
++ Parameters
+    + id (number) - ID do evento
+
++ Request (application/json)
+
+            {   
+                "id":"2"
+            }
++ Response 200 (application/json)
+    
+            {
+                "id": 1,
+                "nome": "corrida dos brother",
+                "lugar": "casa da mae joana",
+                "dataHoraInicio": "2019-12-22T20:20:00",
+                "dataHoraFim": "2019-12-23T20:20:00",
+                "categoria": "Corrida",
+                "status": true,
+                "mediaIdadeParticipantes": 20,
+                "participantesEvento": [
                     {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
+                    "nome": "Lucas",
+                    "id": 1,
+                    "email": "lucasvufma@gmail.com",
+                    "numero": "98986024266",
+                    "conquista": null,
+                    "avaliacao": 4.5,
+                    "status": true,
+                    "senha": "$2a$10$ENQmLhyOVHmPbagMVjIgDu1enmAVTBKlVqme0lAzcZKKGjCjSBJoy",
+                    "idade": 20
                     }
                 ]
-            }
+        }
+
