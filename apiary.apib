@@ -5,7 +5,10 @@ HOST: hoove.herokuapp.com/
 
 Hoove é a API de uma aplicação de mesmo nome, cuja tem o objetivo de melhorar a saúde dos usuários por meio da prática de atividades físicas, baseada no poder coletivo. 
 
+> Todas as operações de post, os ids incrementaveis são sempre incrementados no banco de dados de 10 em 10, alguns exemplos podem não estar exemplificando isto de forma fiel.
+
 # Event [/eventos]
+Requisições gerais de eventos.
 ### Get List of Events [GET]
 
 + Response 200 (application/json)
@@ -38,7 +41,6 @@ Hoove é a API de uma aplicação de mesmo nome, cuja tem o objetivo de melhorar
         ]
 
 ### Post Event[POST]
-Cria um evento, o banco de dados incrementa o id sempre de 10 em 10.
 
 + Request (application/json)
 
@@ -66,6 +68,7 @@ Cria um evento, o banco de dados incrementa o id sempre de 10 em 10.
                 }
 
 ## Event By Id [/eventos/{id}]
+Requisição para um evento específico.
 ### Get Event By Id[GET]
 + Parameters
     + id (number) - ID do evento 
@@ -87,7 +90,7 @@ Cria um evento, o banco de dados incrementa o id sempre de 10 em 10.
             }
         
 
-## Event Paginated [/eventos/page]
+## Event Page [/eventos/page]
 
 ### Get Page of Events[GET]
 
@@ -145,9 +148,9 @@ Cria um evento, o banco de dados incrementa o id sempre de 10 em 10.
             "empty": false
         }
 
-## Get Event Page With Arguments [/eventos/page?page={page_number}&orderBy={argument}&direction={direc_value}]
-### Get Event Page Number, Ordened By Some Argument and Ascendent or Descendent[GET]
-Retorna evento em forma de página de acordo com os argumentos impostos, exemplo a seguir foi requisitado em
+## Event Page With Arguments [/eventos/page?page={page_number}&orderBy={argument}&direction={direc_value}]
+### Get Page Of Events Customized[GET]
+Retorna evento em forma de página de acordo com os argumentos impostos, exemplo a acima foi requisitado em:
 > /eventos/page?page=0&orderBy=nome&direction=DESC
 
 + Parameters
@@ -238,8 +241,10 @@ Retorna evento em forma de página de acordo com os argumentos impostos, exemplo
             "size": 24,
             "empty": false
         }
+
+
 ## Quit Event [/eventos/{event_id}/quit?asp_id={aspirant_id}]
-### Quit Event[DEL]
+### Quit Event[DELETE]
 
 Permite aspirante sair de um evento que participa.
 
@@ -247,9 +252,11 @@ Permite aspirante sair de um evento que participa.
     + event_id (number) - ID do evento
     + aspirant_id (number) - ID do aspirante
 
++ Response 204
 
 
 ## Participate Event [/eventos/{id}/participate]
+Requisição especifica de Aspirante e Evento.
 
 ### Participate Event[POST]
 
@@ -262,7 +269,7 @@ o id do respectivo aspirante deve ser passado no **Body** da requisição.
 + Request (application/json)
 
             {   
-                "id":"2"
+                "id":"1"
             }
 + Response 200 (application/json)
     
@@ -289,4 +296,62 @@ o id do respectivo aspirante deve ser passado no **Body** da requisição.
                     }
                 ]
         }
+
+
+## Aspirante [/aspirantes]
+
+Requisições gerais para todos os aspirantes.
+
+### Post Aspirante [POST]
+
+Requisição de registro temporaria.
+
++ Request (application/json)
+
+            {
+                "nome": "Stalone",
+                "email": "SouORambo@gmail.com",
+                "numero":"98982024211",
+                "senha":"Stalone_Na_Selva",
+                "idade": 15
+            }
+
++ Response 201 (application/json)
+
+            {
+                "nome": "Stalone",
+                "id": 5,
+                "email": "SouORambo@gmail.com",
+                "numero": "98982024211",
+                "conquista": null,
+                "avaliacao": 4.5,
+                "status": true,
+                "senha": "$2a$10$vDWuxnpBI1s4hJ0nAb4ec.pOvmHGY9rpA./aSzwTkdsMFA4jfH5Am",
+                "idade": 15
+            }
+
+## Specific Aspirante  [/aspirantes/{id}]
+Requisições para aspirante específico.
+
+### Delte Aspirante [DELETE]
++ Parameters
+    + id (number) - ID do aspirante
+
++ Response 204
+
+### Get Aspirante [GET]
++ Response 201 (application/json)
+
+         {
+            "nome": "Lucas",
+            "id": 1,
+            "email": "lucasvufma@gmail.com",
+            "numero": "98986024266",
+            "conquista": null,
+            "avaliacao": 4.5,
+            "status": true,
+            "senha": "$2a$10$ENQmLhyOVHmPbagMVjIgDu1enmAVTBKlVqme0lAzcZKKGjCjSBJoy",
+            "idade": 20
+         }   
+
 
