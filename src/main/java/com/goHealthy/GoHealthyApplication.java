@@ -26,6 +26,8 @@ public class GoHealthyApplication implements CommandLineRunner {
 		return new BCryptPasswordEncoder();
 	}
 
+	
+
 	public static void main(String[] args) {
 		SpringApplication.run(GoHealthyApplication.class, args);
 	}

@@ -13,6 +13,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import java.net.URI;
+import com.goHealthy.services.S3Service;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +26,11 @@ import java.util.Optional;
 @RequestMapping(value = "/eventos")
 public class EventoController {
 
+    @Value("${s3.evento.directory}")
+    private String directory;
+    
+    @Autowired
+    private S3Service s3service;
     @Autowired
     private EventoService eventoService;
 
@@ -70,6 +79,23 @@ public class EventoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/{id}/foto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Void> uploadFotoEvento(@PathVariable Integer id, @RequestParam(name="file") MultipartFile file){
+        Optional<Evento> evento = eventoService.find(id);
+        if (!(evento.isPresent())) {
+            return ResponseEntity.notFound().build();
+        }
+        else{
+            URI uri = s3service.uploadPicture(file,directory,"evnt",evento.get().getId());
+            evento.get().seturlFoto(uri.toString());
+            eventoService.post(evento.get());
+        return ResponseEntity.created(uri).build();
+        }
+    }
+
+
     @DeleteMapping("/{id}/quit")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id,@RequestParam Integer asp_id){

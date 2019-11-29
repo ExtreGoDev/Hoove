@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import java.net.URI;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,10 @@ os services são nada mais que classes intermediarias de tratamento de dados.
  */
 @Service
 public class EventoService {
+
+    @Autowired
+    private S3Service s3service;
+
     @Autowired
     private EventoRepository repository;
 
@@ -74,6 +80,11 @@ public class EventoService {
     public Optional<Evento> find(Integer id) {
         return repository.findById(id);
     }
+
+    public URI uploadFotoEvento(MultipartFile multipartFile){
+        return s3service.uploadFile(multipartFile);
+    }
+
 
 
 }

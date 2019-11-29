@@ -43,4 +43,8 @@ public class AspiranteService {
         aspirante.setSenha(encoder.encode(aspirante.getSenha()));
         return aspiranteRepository.save(aspirante);
     }
+
+    public Aspirante postwithoutEncode(Aspirante aspirante){
+        return aspiranteRepository.save(aspirante);
+    }
 }

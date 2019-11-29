@@ -28,6 +28,7 @@ public class Aspirante implements Serializable {
     private Boolean status;
     private String senha;
     private Integer idade;
+    private String urlFoto;
 
     @ManyToMany
     @JsonIgnore
@@ -101,6 +102,12 @@ public class Aspirante implements Serializable {
 
     public void setAmigoDe(List<Aspirante> amigoDe) {
         this.amigoDe = amigoDe;
+    }
+    public void seturlFoto(String url){
+        this.urlFoto=url;
+    }
+    public String geturlFoto(){
+        return this.urlFoto;
     }
 
     public void setNumero(String numero) {

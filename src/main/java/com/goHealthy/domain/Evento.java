@@ -20,6 +20,7 @@ public class  Evento implements Serializable {
 	private String categoria;
 	private Boolean status;
 	private Integer mediaIdadeParticipantes;
+	private String urlFoto;
 
 	@ManyToMany
 	@JoinTable(
@@ -78,6 +79,12 @@ public class  Evento implements Serializable {
 	public Set<Aspirante> getParticipantesEvento() {
 		return participantesEvento;
 	}
+	public void seturlFoto(String url){
+        this.urlFoto=url;
+    }
+    public String geturlFoto(){
+        return this.urlFoto;
+    }
 
 	public void updateMediaIdade(){
 		int count =0;
