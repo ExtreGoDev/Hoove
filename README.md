@@ -39,7 +39,7 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 ### Protótipo
 
-![prototypeDanilo](https://user-images.githubusercontent.com/44952113/67134054-44c45380-f1e6-11e9-9ba3-49a8abbb8517.jpg)
+![prototypeDanilo](https://user-images.githubusercontent.com/31120411/70357694-4d382280-1856-11ea-9ce4-70d4f287ad67.png)
 
 
 <div id="statement" />
@@ -107,7 +107,7 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 ### Diagrama de Caso de Uso
 
-![diagrama_CU](https://user-images.githubusercontent.com/54459438/67315054-29a25e00-f4dc-11e9-869f-b02ceb1d748b.jpeg)
+![diagrama_CU](https://user-images.githubusercontent.com/31120411/70357731-6640d380-1856-11ea-901d-ea15835db0bc.png)
 
 <div id="duscd" />
 
