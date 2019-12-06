@@ -62,6 +62,7 @@ public class Categoria {
         return Objects.hash(getId());
     }
 
+
 	
 
 }
