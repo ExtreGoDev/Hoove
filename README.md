@@ -1,10 +1,10 @@
-# goHealthy
+# Hoove
 
 *******
 
 
 1. [O Problema](#problem)  
-2. [O que é o goHealthy?](#whatgoHealthy)  
+2. [O que é o Hoove?](#whatgoHealthy)  
 3. [Protótipo](#prototype)  
 4. [Objetivos](#statement)  
 5. [Requisitos](#Requirements)  
@@ -29,7 +29,7 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 <div id="whatgoHealthy" />
 
-### O que é o goHealthy?
+### O que é o Hoove?
    Go Healthy é uma iniciativa que se baseia em resultados de estudos científicos sobre a melhora saúde através da prática de atividades físicas e o “poder do coletivo” baseado nesses dois pilares a aplicação visa incentivar a prática de atividade física com foco na melhoria da qualidade de vida e saúde.
         	Os usuários podem se cadastrar no aplicativo e assim criar eventos relacionados à prática de atividades físicas onde quaisquer pessoas podem se cadastrar e participar do evento que foi criado se envolvendo cada vez mais com as atividades através das estratégias de gamificação e sistema de incentivo.
         	A ferramenta também provê a criação de um perfil atlético dos usuários baseado em características fisiológicas inseridas no app o que é utilizado para prover recomendações de novos eventos bem como os melhores locais para a prática de exercícios.
