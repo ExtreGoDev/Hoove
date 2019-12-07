@@ -178,7 +178,7 @@ Aspirante se torna um participante do evento.
 - **Fluxo Principal:** 
 	1. Aspirante acesssa a opçao "cadastre-se aqui".
 	2. A aplicação fornece um tela de cadastro.
-	3. Aspirante fornece nome, email, data de nascimento, cidade, estado, nome de usuario e senha .
+	3. Aspirante fornece nome, email e senha .
 	4. O aspirante selecionar o botão "cadastrar".
 	5. O sistema verifica que as informações estão em um formato válido.
 	6. O sistema Asmazena informaçoes do Apirante.
