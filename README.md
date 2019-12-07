@@ -59,49 +59,51 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 
 #### Requisitos funcionais
 
-- [RF001] O sistema deve prover o cadastro de usuários requisitando nome, email, data de nascimento, cidade e estado;
-- [RF002] O sistema deve prover o login de usuários;
-- [RF003] O sistema deve permitir que o usuário cadastre informações Fisiológicas;
-- [RF004] O sistema deve permitir que o usuário cadastre eventos (titulo do evento,data e hora, local, público que o evento está direcionado);
-- [RF005] O sistema deve permitir que o usuário busque eventos;
-- [RF006] O sistema deve apresentar informações do evento alvo; 
-- [RF007] O sistema deve permitir que o usuário entre em eventos;
-- [RF008] O sistema deve prover informações dos usuários no evento alvo; 
-- [RF009] O sistema deve permitir que os participantes de um evento o possam avaliar;
-- [RF010] O sistema deve permitir que participantes de um evento com presença possa denunciar quaisquer dos participantes;
-- [RF011] O sistema deve prover aos usuários criadores do evento a avaliação da presença dos participantes;
-- [RF012] O sistema deve prover interação por mensagem (chat) entre os participantes do evento;
-- [RF013] O sistema deve classificar a capacidade do usuário relativo a atividades físicas;
-- [RF014] O sistema deverá permitir que o usuário cadastre seu perfil atlético (nível de exercícios que é capaz de executar);
-- [RF015] O sistema deverá prover alguma forma de classificar a assiduidade dos usuários;
-- [RF016] O sistema deverá permitir para participantes do evento, o check-in como meio de confirmar sua participação;
-- [RF017] O sistema deverá fornecer um feed de evolução; 
-- [RF018] O sistema deverá fornecer integrações com IOT;
-- [RF019] O sistema deverá apresentar informações de progresso do aspirante;
-- [RF020] O sistema deverá prover para participantes do evento a opção de adicionar em amigos participantes do mesmo evento;
-- [RF021] O sistema deverá possuir uma página de perfil do usuário;
-- [RF022] O sistema deverá recomendar eventos baseado na classificação do usuário;
-- [RF023] O sistema deverá apresentar diversos filtros para busca de eventos;
-- [RF024] O sistema deverá prover uma lista de amigos;
-- [RF025] O sistema deverá apresentar um feed de evolução(atividades) ao usuário referente aos seus amigos;
-- [RF026] O sistema deverá prover aos usuários informações referente a próxima atividade (Confirmação em evento) de seus amigos;
-- [RF027] O sistema deverá prover chat para a comunicação do usuário com0 seus amigos;
-- [RF028] O sistema deverá fornecer nos eventos a informação do nível médio de idade dos participantes;
-- [RF029] O sistema deverá apresentar nos eventos a informações do nível de exercício mínimo imposto pelo criador do evento;
-- [RF030] O sistema deverá apresentar informações do nível de exercício médio dos participantes do evento;
-- [RF0031] O sistema deverá prover uma busca de usuários;
+- [RF001] CADASTRO NO SISTEMA - O sistema deve permitir cadastro do aspirante (nome, email e senha);
+
+- [RF002] LOGIN NO SISTEMA - O sistema deve permitir login para usuários cadastrados (nome e email);
+
+- [RF003] CRIAR EVENTO - O sistema deve permitir a criação de eventos para usuários cadastrados (nome do evento, descrição, local, idade média dos participantes, data, hora);
+
+- [RF004] BUSCAR EVENTO - O sistema deve apresentar informações do evento alvo; 
+
+- [RF005] PARTICIPAR EVENTO - O sistema deve permitir que o usuário participe em eventos;
+
+- [RF006] CONSULTAR INFORMAÇÕES DE EVENTO - O sistema deve prover informações para os usuários ao entrar em um evento; 
+
+- [RF007] AVALIAÇÃO DE EVENTO - O sistema deve permitir que os participantes de um evento o possam avaliar;
+
+- [RF008] CONFIRMAR PRESENÇA - O sistema deverá permitir que o criador do evento confirme a participação dos aspirantes no evento por meio de um check-in.
+
+- [RF009] DENUNCIAR PARTICIPANTE - O sistema deve permitir que participantes de um evento, com presença confirmada, possa denunciar quaisquer um dos participantes do evento;
+
+- [RF010] MOSTRAR PERFIL DE USUÁRIO - O sistema deverá possuir uma página de perfil do usuário mostrando suas informações cadastradas (nome e email);
+
+- [RF011] ADICIONAR USUÁRIO - O sistema deverá prover para participantes do evento a opção de adicionar um usuário em sua lista de amigos, participantes do mesmo evento;
+
+- [RF012] FILTRAR BUSCA - O sistema deverá apresentar filtros de busca para algumas modalidades de evento, como corrida, futebol, entre outros;
+
+- [RF013] CHAT COM OUTRO USUÁRIO- O sistema deve permitir ao usuário iniciar um chat com outro usuário que tenha participado do mesmo evento;
+
 
 #### Requisitos não funcionais
 
-- [RNF001] O sistema deve priorizar usabilidade;
-- [RNF002] O sistema deverá prover classificação inteligente;
+- [RNF001] O sistema deve ser de fácil usabilidade;
+
+- [RNF002] O sistema deve ter uma interface moderna;
+
 - [RNF003] O sistema deverá possuir uma arquitetura escalável;
+
 - [RNF004] O sistema deverá permitir expansão para diversos tipos de atividade física;
-- [RNF005] O sistema não deve permitir a participação de um usuário em eventos que possuem o mesmo intervalo de tempo;
-- [RNF006] Os eventos a serem criados devem prover informações apenas relacionadas ao evento;
-- [RNF007] O sistema deve possuir uma interface gráfica moderna;
-- [RNF008] O sistema deve ser agradável;
-- [RNF009] O sistema deve descartar os eventos em 24 horas após sua finalização;
+
+- [RNF005] O sistema deve impedir a participação de um usuário dois eventos que ocorrem simultâneamente;
+
+- [RNF006] Os eventos, ao serem criados, devem prover informações apenas relacionadas ao evento;
+
+- [RNF007] O sistema deve descartar os eventos em 24 horas após sua finalização;
+
+- [RNF008] O sistema não deve descartar quaisquer dados e sim reaproveitar, isto é, transferir para BIG DATA (Cuidado com a LGPD);
+
 
 <div id="uscd" />
 
@@ -127,20 +129,16 @@ aumentou signiﬁcantemente a saúde mental e  emocional QOL(Quality of Life) co
 - **Pré-condições:** Aspirante precisa estar logado no sistema.
 
 - **Fluxo Principal:** 
-   1. O sistema requisita a categoria do evento.
-   2. Aspirante seleciona a categoria do evento desejada e clica em prosseguir.
-   3. O sistema requisita as informações *gerais* do evento.
-   4. Aspirante fornece as informações *gerais* e clica em prosseguir.
-   5. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
-   6. O Aspirante seleciona a opção de prosseguir.
-   7. O sistema requisita as informações *especificas* referente à categoria do evento.
-   8. Aspirante fornece as informações *especificas* e clica em prosseguir.
-   9. O sistema apresenta mensagem de sucesso referente a criação do evento.
+   1. O sistema requisita o nome do evento.
+   2. O apirante seleciona o local do evento.
+   3. O sistema requisita a categoria do evento desejada.
+   4. O Aspirante seleciona uma imagem para o evento.
+   5. Aspirante fornece as informações de hora e data.
+   6. O sistema apresenta mensagem de sucesso referente a criação do evento.
 
 - **Fluxo Alternativo:** 
-   1. O sistema apresenta os eventos semelhantes com base em local, horario e categoria e pergunta se o aspirante deseja realmente criar o evento fornecendo a opção de prosseguir ou não.
-   2. O aspirante seleciona a opção de não criar o evento.
-   3. O sistema retorna para o menu principal da aplicação.
+   1. O aspirante seleciona a opção de voltar.
+   2. O sistema retorna para o menu de eventos da aplicação.
 
 - **Pós-Condições:**
 Evento criado.
@@ -154,19 +152,16 @@ Evento criado.
 - **Fluxo Principal:** 
    1. Aspirante seleciona evento.
    2. O sistema apresenta as informações do evento.
-   3. Aspirante clica em participar evento.
-   4. O sistema pergunta se o aspirante deseja realmente participar do evento.
-   5. Aspirante confirma a sua futura participação no evento.
-   6. O sistema apresenta uma mensagem motivadora referente a categoria do evento em conjunto com mensagem de sucesso referente a confirmação de participação.
+   3. Aspirante clica em Entrar.
+   4. Uma mensagem é apresentada confirmando a participação do Evento.
 
 - **Fluxo Alternativo:** 
-   1. O sistema pergunta se o aspirante deseja realmente participar do evento.
-   2. Aspirante rejeita a participação no evento.
-   3. O sistema redireciona o aspirante para o menu principal.
+   1. O aspirante pode denunciar o evento.
+   2. O sistema redireciona o aspirante para o menu principal.
 
 - **Fluxo Alternativo 2:**
    1. Aspirante seleciona algum participante do evento.
-   2 . Sistema apresenta as informações do respectivo participante.
+   2. Sistema apresenta as informações do respectivo participante.
 
 
 - **Pós-Condições:**
