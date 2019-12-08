@@ -5,6 +5,7 @@ import logoGoHealthy from '../../assets/logo3.png';
 export default function Menu({ navigation }) {
 
   const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   useEffect(() => {
@@ -22,16 +23,28 @@ export default function Menu({ navigation }) {
   return (
     <View style={styles.mainContainer}>
 
-      <Image source={logoGoHealthy} resizeMode="contain" style={styles.logo} />
+      <Image source={logoGoHealthy} resizeMode="contain" style={styles.logo} />   
+
+      <Text style={styles.txtWarn}> Criar Novo Usuário </Text>
 
       <TextInput
         style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
         placeholderTextColor="#999"
-        placeholder="Usuário ou Email"
+        placeholder="Digite um nome de usuário"
         value={username}
         onChangeText={value => setUsername(value)}
+      />
+
+    <TextInput
+        style={styles.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholderTextColor="#999"
+        placeholder="Digite seu melhor email"
+        value={email}
+        onChangeText={value => setEmail(value)}
       />
 
       <TextInput
@@ -39,7 +52,7 @@ export default function Menu({ navigation }) {
         autoCapitalize="none"
         autoCorrect={false}
         placeholderTextColor="#999"
-        placeholder="Senha"
+        placeholder="Escolha uma senha"
         secureTextEntry={true}
         value={password}
         onChangeText={value => setPassword(value)}
@@ -47,16 +60,9 @@ export default function Menu({ navigation }) {
 
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate('Menu', { username })}>
-        <Text style={styles.txtBtn}> Entrar </Text>
+        onPress={() => navigation.navigate('Menu')}>
+        <Text style={styles.txtBtn}> Vamos Lá! </Text>
       </TouchableOpacity>
-
-      <View style={styles.createAccountLabel}>
-        <Text style={styles.createAccountText}> Ainda não tem uma conta? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text style={styles.createAccountButton}> Cadastre-se aqui. </Text>
-        </TouchableOpacity>
-      </View>
 
     </View>
   );
@@ -72,10 +78,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginLeft: 10,
-    height: 100,
-    width: 290,
-    marginBottom: 30,
-    marginTop: 50
+    height: 55,
+    marginBottom: 45,
   },
   input: {
     height: 48,
@@ -113,5 +117,11 @@ const styles = StyleSheet.create({
   createAccountButton: {
     fontSize: 14,
     color: "skyblue"
-  }
+  },
+  txtWarn: {
+    marginBottom: 20,
+    fontSize: 18,
+    color: "white",
+    fontWeight: "bold"
+  },
 })

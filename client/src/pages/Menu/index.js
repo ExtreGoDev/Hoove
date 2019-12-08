@@ -1,105 +1,97 @@
-import React, { useState } from 'react';
-import {
-  KeyboardAvoidingView, Text, View, Image, StyleSheet, Dimensions, ImageBackground, StatusBar, TouchableOpacity, TextInput, ScrollView
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { KeyboardAvoidingView, Text, View, Image, StyleSheet, Dimensions, StatusBar, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function Menu({ navigation }) {
 
-  const username = navigation.getParam('username')
-
-  const [busca, setBusca] = useState(null)
+  const [busca, setBusca] = useState(null) // Campo da busca
+  const [reloadPage, setReloadPage] = useState(1) // Campo para Reload de Página
   const [modalidades, setModalidades] = useState(["Corrida", "Caminhada", "Futebol", "Aeróbico", "Academia"])
-  const [destaques, setSestaques] = useState(["Passei no parque", "Corrida pela saúde", "Idosos na ativa", "Pernas pra que te quero", "Pelada dos Primos do Maiobão", "Caminhada da Primeira Idade"])
+  const [destaques, setDestaques] = useState(["Evento 1", "Evento 2", "Evento 3", "Evento 4", "Evento 5"])
 
-  function handleText(novaBusca) {
-    setBusca(novaBusca)
+  useEffect(() => {
+    getData()
+  }, [reloadPage])
+
+  getData = async () => {
+    try {
+      // something
+    } catch (e) {
+      alert(e)
+    }
   }
 
   return (
-      <KeyboardAvoidingView eneabled style={styles.mainContainer}>
+    <KeyboardAvoidingView eneabled style={styles.mainContainer}>
 
-        <StatusBar barStyle="light-content" backgroundColor="#151C48" />
-
-        <TouchableOpacity onPress={() => {navigation.navigate('Profile', {username})}} style={{height: 40, width: screenWidth, marginTop: 10}}>
-          <Text style={styles.txtName}>Olá, { username != '' ? username : 'Visitante'}!</Text>
+      <View style={styles.welcome}>
+        <Text style={styles.txtWelcome}>
+          Olá, Danilo!
+        </Text>
+        <TouchableOpacity onPress={() => { setReloadPage(reloadPage + 1) }} style={{ marginRight: 20, alignSelf: "center" }}>
+          <Icon name="refresh" size={30} color="white" />
         </TouchableOpacity>
+      </View>
 
-        <View style={styles.input}>
-          <TextInput style={{ color: "#242424", marginLeft: 20 }}
-            onChangeText={handleText}
-            placeholder="Busque um evento" />
-        </View>
+      <TextInput
+        style={styles.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholderTextColor="#999"
+        value={busca}
+        onChangeText={value => setBusca(value)}
+        placeholder="Busque um evento"
+        editable={true}
+      />
 
-        {/* EVENTOS POR CATEGORIA */}
 
-        <View style={{ height: 90, width: "100%", marginTop: 20 }}>
+      {/* EVENTOS POR CATEGORIA */}
 
-          <Text style={styles.txt}> Eventos por categoria </Text>
+      <View style={styles.categContainer}>
+        <Text style={styles.txtSecondary}> Eventos por categoria </Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {modalidades.map((element, index) => {
+            return (
+              <TouchableOpacity key={index} style={styles.categTag}
+                onPress={() => { navigation.navigate('Category', { element }) }}>
+                <Text style={styles.categText}> {element} </Text>
+              </TouchableOpacity>)
+          })}
+        </ScrollView>
 
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+      </View>
 
-            {
-              modalidades.map((element, index) => {
 
-                return (
-                  <TouchableOpacity key={index} 
-                                    style={styles.imgBkg}
-                                    onPress={() => {navigation.navigate('Category', { element })}}>
+      {/* CONFIRA OS PRÓXIMOS EVENTOS */}
 
-                    <Text style={styles.txtCat}> {element} </Text>
-
-                  </TouchableOpacity>)
-
-              })
-            }
-
-          </ScrollView>
-
-        </View>
-
-        {/* EVENTOS PRÓXIMOS */}
-
-        <View style={{ height: 400, width: "100%", marginTop: 5 }}>
-
-          <Text style={styles.txt}> Confira os próximos eventos </Text>
-
-          <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
-
-            {
-              destaques.map((element, index) => {
-                return (
-
-                  <TouchableOpacity key={index} 
-                                    style={styles.rowEvents}
-                                    onPress={() => {navigation.navigate('Event', { element })}}>
-
-                    <View style={{ flexDirection: "row" }}>
-                      <Image
-                        style={{ backgroundColor:"skyblue", height: 75, width: 75, marginLeft: 0, borderRadius: 4 }}
-                      />
-
-                      <View style={{ marginTop: 8 }}>
-
-                        <Text style={styles.txtEvt}> {element} </Text>
-
-                        <View style={{ flexDirection: "row" }}>
-                          <Text style={styles.txtEvtDet}>Data: 25/25/2025 </Text>
-                          <Text style={styles.txtEvtDet}>Local: Centro </Text>
-                        </View>
-
+      <View style={styles.eventContainer}>
+        <Text style={styles.txtSecondary}> Confira os próximos eventos </Text>
+        <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
+          {destaques[0] != null ?
+            destaques.map((e, i) => {
+              return (
+                <TouchableOpacity
+                  key={i}
+                  style={styles.eventCard}
+                  onPress={() => { navigation.navigate('Event', { /**/ }) }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Image style={styles.eventIsOnIndicator} />
+                    <View style={{ marginTop: 8 }}>
+                      <Text style={styles.eventText}> {e} </Text>
+                      <View style={{ flexDirection: "row" }}>
+                        <Text style={styles.eventTextSecondary}>Data: 10/10/2010 </Text>
+                        <Text style={styles.eventTextSecondary}>Local: Maiobão </Text>
                       </View>
                     </View>
+                  </View>
+                </TouchableOpacity>)
+            })
+            : <Text style={styles.txtNoEvents}> Sem eventos Recentes :( </Text>}
+        </ScrollView>
 
-                  </TouchableOpacity>
-
-                )
-              })
-            }
-
-          </ScrollView>
-
-        </View>
-      </KeyboardAvoidingView>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -112,14 +104,93 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#151C48"
   },
+  welcome: {
+    height: 50,
+    width: screenWidth,
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  txtWelcome: {
+    fontSize: 28,
+    color: "white",
+    marginLeft: 20,
+    marginBottom: 5,
+    fontWeight: "bold"
+  },
   input: {
     height: 48,
-    width: "95%",
+    width: "85%",
     borderRadius: 4,
+    marginTop: 6,
     backgroundColor: "#f2f2f8",
     display: "flex",
     justifyContent: "center",
-    marginTop: 10
+    paddingHorizontal: 15
+  },
+  txtSecondary: {
+    fontSize: 22,
+    color: "white",
+    marginLeft: 12,
+    marginBottom: 5,
+    fontWeight: "bold"
+  },
+  categContainer: {
+    height: 90,
+    width: "100%",
+    marginTop: 20
+  },
+  categText: {
+    fontSize: 16,
+    color: "white",
+  },
+  categTag: {
+    marginLeft: 15,
+    marginTop: 10,
+    marginBottom: 5,
+    height: 45,
+    width: 100,
+    borderRadius: 4,
+    backgroundColor: "skyblue",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  eventContainer: {
+    height: 300,
+    width: "100%",
+    marginTop: 15
+  },
+  eventCard: {
+    height: 75,
+    borderRadius: 4,
+    width: "85%",
+    backgroundColor: "#f2f2f8",
+    justifyContent: "center",
+    alignSelf: "center",
+    margin: 12
+  },
+  eventIsOnIndicator: { 
+    backgroundColor: "skyblue", 
+    height: 50, 
+    width: 50, 
+    marginLeft: 15, 
+    borderRadius: 50,
+    alignSelf: "center"
+   },
+  eventText: {
+    fontSize: 20,
+    color: "#151C48",
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginLeft: 10
+  },
+  eventTextSecondary: {
+    fontSize: 12,
+    color: "#00A1D7",
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginLeft: 15
   },
   btn: {
     flex: 1,
@@ -129,54 +200,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  imgBkg: {
-    margin: 8,
-    height: 45,
-    width: 100,
-    borderRadius: 4,
-    backgroundColor: "skyblue",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  rowEvents: {
-    margin: 10,
-    height: 75,
-    borderRadius: 4,
-    width: "95%",
-    backgroundColor: "#f2f2f8",
-    justifyContent: "center",
-  },
-  txt: {
-    fontSize: 18,
-    color: "white",
-    marginLeft: 10,
-    marginBottom: 5,
-    fontWeight: "bold"
-  },
-  txtCat: {
-    fontSize: 16,
-    color: "white",
-  },
-  txtEvt: {
-    fontSize: 20,
-    color: "#151C48",
+  txtNoEvents: {
+    fontSize: 14,
+    color: "#f2f2f8",
     fontWeight: "bold",
-    marginBottom: 10,
-    marginLeft: 10
-  },
-  txtEvtDet: {
-    fontSize: 12,
-    color: "#00A1D7",
-    fontWeight: "bold",
-    marginBottom: 10,
-    marginLeft: 17
-  },
-  txtName: {
-    fontSize: 24,
-    color: "white",
-    marginLeft: 10,
-    marginBottom: 5,
-    fontWeight: "bold"
+    alignSelf: "center",
+    marginTop: 25
   }
 })

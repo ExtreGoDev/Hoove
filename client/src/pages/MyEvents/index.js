@@ -1,67 +1,67 @@
-import React, { useState } from 'react';
-import {
-    KeyboardAvoidingView,
-    Text,
-    View,
-    Image,
-    StyleSheet,
-    Dimensions,
-    ImageBackground,
-    StatusBar,
-    TouchableOpacity,
-    TextInput,
-    ScrollView
-} from 'react-native';
-
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function MyEvents({ navigation }) {
 
+    useEffect(() => {
+        getData()
+    }, [])
+
+    getData = async () => {
+        try {
+            // something
+        } catch (e) {
+            alert(e)
+        }
+    }
 
     return (
         <View style={styles.mainContainer}>
 
-            <Text style={styles.txt}> Meus eventos</Text>
+            <View style={styles.myEvents}>
+                <Text style={styles.txtMyEvents}> Meus eventos </Text>
+            </View>
 
-            <View style={styles.itemContainer}>
-                <TouchableOpacity style={styles.btn} onPress={() => {navigation.navigate('CreateEvent')}}>                    
-                    <Icon name="add-circle" size={20} color="white" style={{marginRight: 5}}/>
-                    <Text style={styles.txtBtn}>
+            <View style={styles.btnCreateEventLabel}>
+                <TouchableOpacity style={styles.btnCreateEvent} onPress={() => { navigation.navigate('CreateEvent') }}>
+                    <Icon name="add-circle" size={20} color="white" style={{ marginRight: 5 }} />
+                    <Text style={styles.btnCreateEventText}>
                         Criar Evento
                     </Text>
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.txtSecond}> Eventos Criados</Text>
-
-            <Text style={styles.txtSecond}> Participando</Text>
-
         </View>
     );
 }
+
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
+
 
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: "#151C48"
     },
-    itemContainer: {
+    myEvents: {
+        height: 50,
+        width: screenWidth,
+        marginTop: 10
+    },
+    txtMyEvents: {
+        fontSize: 27,
+        color: "white",
+        marginLeft: 15,
+        marginBottom: 5,
+        fontWeight: "bold"
+    },
+    btnCreateEventLabel: {
         justifyContent: "center",
         alignItems: "center"
     },
-    txt: {
-        fontSize: 24,
-        color: "white",
-        marginLeft: 5,
-        marginTop: 10,
-        fontWeight: "bold"
-    },
-    txtBtn: {
-        fontSize: 18,
-        color: "white",
-        fontWeight: "bold"
-    },
-    btn: {
+    btnCreateEvent: {
         height: 50,
         width: "85%",
         borderRadius: 4,
@@ -72,11 +72,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 10
     },
-    txtSecond: {
+    btnCreateEventText: {
         fontSize: 18,
         color: "white",
-        marginLeft: 5,
-        marginTop: 10,
         fontWeight: "bold"
     }
 })
