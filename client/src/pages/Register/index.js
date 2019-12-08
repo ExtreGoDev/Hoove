@@ -1,51 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, StyleSheet, StatusBar, TouchableOpacity, TextInput } from 'react-native';
-import logoGoHealthy from '../../assets/logo3.png';
+import { Text, View, Image, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
+import logoGoHealthy from '../../assets/logo.png';
+
+import api from '../../services/api'
 
 export default function Menu({ navigation }) {
 
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
-  useEffect(() => {
-    getData()
-  }, [])
-
-  getData = async () => {
+  setData = async () => {
     try {
-      // something
+
+      await api.post('/aspirantes', {
+        "nome": username,
+        "email": email,
+        "numero": "99883135861",
+        "senha": password,
+        "idade": 99
+      })
+      alert(`Olá, ${username}!`)
+      navigation.navigate('Menu')
+
     } catch (e) {
-      alert(e)
+
+      alert("Ocorreu algum erro na criação do seu perfil. :o")
+
     }
   }
 
   return (
     <View style={styles.mainContainer}>
 
-      <Image source={logoGoHealthy} resizeMode="contain" style={styles.logo} />   
+      <Image source={logoGoHealthy} resizeMode="contain" style={styles.logo} />
 
-      <Text style={styles.txtWarn}> Criar Novo Usuário </Text>
+      <Text style={styles.txtInfo}> Dados Pessoais</Text>
+      <View style={styles.stripeSeparator}></View>
 
       <TextInput
         style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
         placeholderTextColor="#999"
-        placeholder="Digite um nome de usuário"
+        placeholder="Digite seu nome"
         value={username}
         onChangeText={value => setUsername(value)}
       />
 
-    <TextInput
+      <TextInput
         style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
         placeholderTextColor="#999"
-        placeholder="Digite seu melhor email"
+        placeholder="Digite seu email"
         value={email}
         onChangeText={value => setEmail(value)}
       />
+
+      <Text style={styles.txtInfo}> Senha </Text>
+      <View style={styles.stripeSeparator}></View>
 
       <TextInput
         style={styles.input}
@@ -58,9 +74,25 @@ export default function Menu({ navigation }) {
         onChangeText={value => setPassword(value)}
       />
 
+      <TextInput
+        style={styles.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholderTextColor="#999"
+        placeholder="Repita a senha"
+        secureTextEntry={true}
+        value={confirmPassword}
+        onChangeText={value => setConfirmPassword(value)}
+      />
+
+      <View style={styles.contractTerms}>
+        <CheckBox/>
+        <Text style={styles.contractTermsText}>Eu aceito os termos de uso</Text>
+      </View>
+
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate('Menu')}>
+        onPress={setData}>
         <Text style={styles.txtBtn}> Vamos Lá! </Text>
       </TouchableOpacity>
 
@@ -73,13 +105,13 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#151C48"
   },
   logo: {
     marginLeft: 10,
     height: 55,
-    marginBottom: 45,
+    marginBottom: 25,
+    alignSelf: "center"
   },
   input: {
     height: 48,
@@ -89,7 +121,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f8",
     display: "flex",
     justifyContent: "center",
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    alignSelf: "center"
   },
   btn: {
     height: 50,
@@ -99,7 +132,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#00A1D7",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    alignSelf: "center"
   },
   txtBtn: {
     fontSize: 18,
@@ -118,10 +152,28 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "skyblue"
   },
-  txtWarn: {
-    marginBottom: 20,
+  txtInfo: {
+    marginTop: 10,
+    marginLeft: 25,
     fontSize: 18,
     color: "white",
     fontWeight: "bold"
   },
+  stripeSeparator: {
+    height:2,
+    width: "85%",
+    backgroundColor: "white",
+    alignSelf: "center",
+    marginBottom: 2,
+    marginTop: 4
+  },
+  contractTerms: {
+    flexDirection: "row", 
+    alignSelf: "center",
+    marginTop: 10
+  },
+  contractTermsText: {
+    marginTop: 6,
+    color: "white"
+  }
 })

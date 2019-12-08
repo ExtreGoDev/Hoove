@@ -1,35 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, StyleSheet, StatusBar, TouchableOpacity, TextInput } from 'react-native';
-import logoGoHealthy from '../../assets/logo3.png';
+import logoHoove from '../../assets/logo.png';
+
+import api from '../../services/api'
 
 export default function Menu({ navigation }) {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [salvarSenha, setSalvarSenha] = useState('')
 
-  useEffect(() => {
-    getData()
-  }, [])
-
-  getData = async () => {
+  setData = async () => {
     try {
-      // something
+      
+      const response = await api.post('/login', {
+        "email": username,
+        "senha": password
+      })
+      const aspirante = response.data
+      navigation.navigate('Menu', { aspirante })
+
     } catch (e) {
-      alert(e)
+
+      alert("Email ou senha inválidos")
+
     }
   }
 
   return (
     <View style={styles.mainContainer}>
 
-      <Image source={logoGoHealthy} resizeMode="contain" style={styles.logo} />
+      <Image source={logoHoove} resizeMode="contain" style={styles.logo} />
 
       <TextInput
         style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
         placeholderTextColor="#999"
-        placeholder="Usuário ou Email"
+        placeholder="Email"
         value={username}
         onChangeText={value => setUsername(value)}
       />
@@ -47,7 +55,7 @@ export default function Menu({ navigation }) {
 
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate('Menu', { username })}>
+        onPress={setData}>
         <Text style={styles.txtBtn}> Entrar </Text>
       </TouchableOpacity>
 

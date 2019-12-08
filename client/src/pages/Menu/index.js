@@ -3,12 +3,16 @@ import { KeyboardAvoidingView, Text, View, Image, StyleSheet, Dimensions, Status
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import api from '../../services/api'
+
 export default function Menu({ navigation }) {
+
+  const eventViewer = navigation.getParam('aspirante')
 
   const [busca, setBusca] = useState(null) // Campo da busca
   const [reloadPage, setReloadPage] = useState(1) // Campo para Reload de Página
   const [modalidades, setModalidades] = useState(["Corrida", "Caminhada", "Futebol", "Aeróbico", "Academia"])
-  const [destaques, setDestaques] = useState(["Evento 1", "Evento 2", "Evento 3", "Evento 4", "Evento 5"])
+  const [destaques, setDestaques] = useState([])
 
   useEffect(() => {
     getData()
@@ -16,7 +20,11 @@ export default function Menu({ navigation }) {
 
   getData = async () => {
     try {
-      // something
+
+      const response = await api.get('/eventos')
+      const eventos = response.data
+      setDestaques(eventos)
+
     } catch (e) {
       alert(e)
     }
@@ -27,7 +35,7 @@ export default function Menu({ navigation }) {
 
       <View style={styles.welcome}>
         <Text style={styles.txtWelcome}>
-          Olá, Danilo!
+          Olá, {eventViewer.nome}!
         </Text>
         <TouchableOpacity onPress={() => { setReloadPage(reloadPage + 1) }} style={{ marginRight: 20, alignSelf: "center" }}>
           <Icon name="refresh" size={30} color="white" />
@@ -74,14 +82,14 @@ export default function Menu({ navigation }) {
                 <TouchableOpacity
                   key={i}
                   style={styles.eventCard}
-                  onPress={() => { navigation.navigate('Event', { /**/ }) }}>
+                  onPress={() => { navigation.navigate('Event', { e, eventViewer })}}>
                   <View style={{ flexDirection: "row" }}>
                     <Image style={styles.eventIsOnIndicator} />
                     <View style={{ marginTop: 8 }}>
-                      <Text style={styles.eventText}> {e} </Text>
+                      <Text numberOfLines={1} style={styles.eventText}> {e.nome} </Text>
                       <View style={{ flexDirection: "row" }}>
-                        <Text style={styles.eventTextSecondary}>Data: 10/10/2010 </Text>
-                        <Text style={styles.eventTextSecondary}>Local: Maiobão </Text>
+                        <Text numberOfLines={1} style={styles.eventTextSecondary}>Data: {e.dataHoraInicio.slice(8, 10)}/{e.dataHoraInicio.slice(5, 7)}/{e.dataHoraInicio.slice(0, 4)} </Text>
+                        <Text numberOfLines={1} style={styles.eventTextSecondary}>Local: {e.lugar} </Text>
                       </View>
                     </View>
                   </View>
@@ -89,8 +97,8 @@ export default function Menu({ navigation }) {
             })
             : <Text style={styles.txtNoEvents}> Sem eventos Recentes :( </Text>}
         </ScrollView>
-
       </View>
+
     </KeyboardAvoidingView>
   );
 }
@@ -157,9 +165,9 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   eventContainer: {
-    height: 300,
+    height: screenHeight-313,
     width: "100%",
-    marginTop: 15
+    marginTop: 15,
   },
   eventCard: {
     height: 75,
@@ -170,27 +178,29 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 12
   },
-  eventIsOnIndicator: { 
-    backgroundColor: "skyblue", 
-    height: 50, 
-    width: 50, 
-    marginLeft: 15, 
+  eventIsOnIndicator: {
+    backgroundColor: "skyblue",
+    height: 50,
+    width: 50,
+    marginLeft: 15,
     borderRadius: 50,
     alignSelf: "center"
-   },
+  },
   eventText: {
     fontSize: 20,
     color: "#151C48",
     fontWeight: "bold",
     marginBottom: 10,
-    marginLeft: 10
+    marginLeft: 10,
+    width: 240
   },
   eventTextSecondary: {
     fontSize: 12,
     color: "#00A1D7",
     fontWeight: "bold",
     marginBottom: 10,
-    marginLeft: 15
+    marginLeft: 15,
+    width: 110
   },
   btn: {
     flex: 1,

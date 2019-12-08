@@ -71,6 +71,7 @@ const Tabs = createAppContainer(createBottomTabNavigator(
       },
       style: {
         backgroundColor: '#00A1D7',
+        height: 50
       },
     }
   }

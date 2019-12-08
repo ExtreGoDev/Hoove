@@ -4,15 +4,17 @@ import {
 } from 'react-native';
 import logo from '../../assets/logo.png';
 
+import api from '../../services/api'
+
 export default function Menu({ navigation }) {
 
     useEffect(() => {
-        getData()
+        getAspiranteData()
     }, [])
 
-    getData = async () => {
+    getAspiranteData = async () => {
         try {
-            // something
+            //const response = api.get(`/aspirantes/${id}`)
         } catch (e) {
             alert(e)
         }
